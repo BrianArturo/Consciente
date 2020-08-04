@@ -60,7 +60,7 @@ public class PolizasBean implements Serializable {
 	}
 	
 	public void enviar() {
-		System.out.println("Valor del form=>"+numero);
+		System.out.println("Valor del form=>"+numerox);
 		
 	}
 
