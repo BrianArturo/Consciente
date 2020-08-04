@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.mysql.jdbc.Statement;
 
 public class TestDriverMySQL {
 

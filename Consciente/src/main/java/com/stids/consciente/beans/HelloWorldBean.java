@@ -1,13 +1,11 @@
+package com.stids.consciente.beans;
 
 import java.io.Serializable;
 
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import com.stids.consciente.models.Policies;
-
 import DataBase.TestDriverMySQL;
-
-import javax.faces.view.ViewScoped;
 
 @Named("helloworld")
 @ViewScoped

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui">
+	
+	
+	<h:head>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" type="image/x-icon" href="../resources/img/Ico.ico"/>
+	</h:head>
+
+
+<h:body>
+
+	<h2>Sistema de polizas</h2>
+
+<h:form>
+	<h:panelGrid>
+
+
+		<p:outputLabel for="@next" value="Long Item Label:" />
+		<p:selectOneMenu id="longItemLabel" value="#{polizasBean.numero}"
+			style="width:100px">
+			<f:selectItem itemLabel="Zero" itemValue="0" />
+			<f:selectItem itemLabel="One" itemValue="1" />
+			<f:selectItem itemLabel="Two" itemValue="2" />
+			<f:selectItem itemLabel="Three" itemValue="3" />
+			<f:selectItem itemLabel="Four" itemValue="4" />
+			<f:selectItem itemLabel="Five" itemValue="5" />
+			<f:selectItem itemLabel="Six" itemValue="6" />
+			<f:selectItem itemLabel="Seven" itemValue="7" />
+			<f:selectItem itemLabel="Long item here not necessary in the end"
+				itemValue="99" />
+			<f:selectItem itemLabel="Eight" itemValue="8" />
+			<f:selectItem itemLabel="Nine" itemValue="9" />
+			<f:selectItem itemLabel="Ten and not more than ten " itemValue="10" />
+		</p:selectOneMenu>
+
+		<p:commandButton value="Ajax Submit" id="ajax"  action="#{polizasBean.enviar}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+
+	</h:panelGrid>
+
+</h:form>
+
+</h:body>
+
+</html>
