@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Polizas {
 
-	private Poliza poliza;
+	private TipoPoliza poliza;
 	private Compania compania;
 	private Producto producto;
 	private Long numPoliza;
@@ -24,11 +24,11 @@ public class Polizas {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Poliza getPoliza() {
+	public TipoPoliza getPoliza() {
 		return poliza;
 	}
 
-	public void setPoliza(Poliza poliza) {
+	public void setPoliza(TipoPoliza poliza) {
 		this.poliza = poliza;
 	}
 
