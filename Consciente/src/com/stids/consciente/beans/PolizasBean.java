@@ -8,11 +8,14 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
 import com.stids.consciente.models.Polizas;
+import com.stids.consciente.models.TipoPoliza;
+import com.stids.consciente.services.TipoPolizaServices;
 
 @Named("polizasBean")
 @ViewScoped
@@ -22,28 +25,34 @@ public class PolizasBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1555777803758028648L;
-	private String nombre;
-	private String apellido;
-	private String ciudad;
-	private String color;
+
 	private Integer numero;
 	private Polizas polizas;
 	private Polizas selectPolizas;
 	private List<Polizas> listPolizas;
 
+	private List<TipoPoliza> listTipoPoliza;
+	private TipoPoliza tipoPoliza;
+
+	@Inject
+	TipoPolizaServices tipoPolizaService;
+
 	public PolizasBean() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@PostConstruct
 	public void init() {
 		listPolizas = new ArrayList<>();
+		listTipoPoliza = new ArrayList<>();
 		iniciar();
 
 	}
 
 	private void iniciar() {
+		listTipoPoliza = tipoPolizaService.getTipoPoliza();
+
 		Polizas polizas = new Polizas();
 		polizas.setFecExpedicion("12334");
 		polizas.setFecFinVigencia("4567");
@@ -80,8 +89,6 @@ public class PolizasBean implements Serializable {
 	public void setPolizas(Polizas polizas) {
 		this.polizas = polizas;
 	}
-	
-	
 
 	public Integer getNumero() {
 		return numero;
@@ -89,6 +96,22 @@ public class PolizasBean implements Serializable {
 
 	public void setNumero(Integer numero) {
 		this.numero = numero;
+	}
+
+	public List<TipoPoliza> getListTipoPoliza() {
+		return listTipoPoliza;
+	}
+
+	public void setListTipoPoliza(List<TipoPoliza> listTipoPoliza) {
+		this.listTipoPoliza = listTipoPoliza;
+	}
+
+	public TipoPoliza getTipoPoliza() {
+		return tipoPoliza;
+	}
+
+	public void setTipoPoliza(TipoPoliza tipoPoliza) {
+		this.tipoPoliza = tipoPoliza;
 	}
 
 	public void onRowSelect(SelectEvent event) {
