@@ -2,6 +2,7 @@ package com.stids.consciente.models;
 
 public class Compania {
 
+	private Integer id;
 	private Long nit;
 	private String nombre;
 	private String direccion;
@@ -10,7 +11,27 @@ public class Compania {
 
 	public Compania() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+
+	public Compania(Integer id,Long nit, String nombre, String direccion, String telefono, String telefonoContacto) {
+		super();
+		this.id = id;
+		this.nit = nit;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.telefono = telefono;
+		this.telefonoContacto = telefonoContacto;
+	}
+
+	
+
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Long getNit() {
@@ -53,4 +74,13 @@ public class Compania {
 		this.telefonoContacto = telefonoContacto;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("Compania [nit=%s, nombre=%s]", nit, nombre);
+	}
+
+
+
+	
+	
 }

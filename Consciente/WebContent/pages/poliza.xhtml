@@ -12,12 +12,11 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="shortcut icon" type="image/x-icon" href="../resources/img/Ico.ico" />
-	
+	<link rel="shortcut icon" type="image/x-icon"
+		href="../resources/img/Ico.ico" />
 
-	<link rel="stylesheet" href="resourse/css/bootstrap.css">
 
-	
+	<link rel="stylesheet" href="resourse/css/bootstrap.css" />
 </h:head>
 
 
@@ -33,27 +32,37 @@
 					<p:outputLabel for="tipoPoliza" value="Tipo Poliza"
 						class="control-label" />
 					<h:selectOneMenu id="tipoPoliza"
-						class="col-sm-10 form-control m-b-15"
-						 label="Tipo Poliza"
+						class="col-sm-10 form-control m-b-15" label="Tipo Poliza"
 						value="#{polizasBean.tipoPoliza}">
 
 						<f:selectItem itemLabel="Seleccione un tipo de poliza"
 							itemValue="" noSelectionOption="true" />
 						<f:selectItems value="#{polizasBean.listTipoPoliza}"
-							 itemLabel="#{tipoPoliza.nombre}"
-							itemValue="#{tipoPoliza}" />
+							itemLabel="#{tipoPoliza.nombre}" itemValue="#{tipoPoliza}" />
 					</h:selectOneMenu>
-					
-<!-- 					        <p:outputLabel for="tipoPoliza" value="Tipo Poliza" /> -->
-<!--         <p:selectOneMenu id="tipoPoliza" value="#{polizasBean.tipoPoliza}" effect="fold" editable="true"> -->
-<!--             <f:selectItem itemLabel="Select One" itemValue="" /> -->
-<!--             <f:selectItems value="#{polizasBean.listTipoPoliza}" /> -->
-<!--         </p:selectOneMenu> -->
-					
+				</div>
+			</div>
+
+			<div class="col-md-2">
+				<div class="form-group">
+					<p:outputLabel for="empresas" value="Tipo Compañia"
+						class="control-label" />
+					<h:selectOneMenu id="empresas" 
+						filter="true" filterMatchMode="startsWith" effect="fade"
+						class="col-sm-10 form-control m-b-15" label="Tipo Compañia"
+						value="#{polizasBean.compania}">
+
+						<f:selectItem itemLabel="Seleccione un tipo de compania"
+							itemValue="" noSelectionOption="true" />
+						<f:selectItems value="#{polizasBean.listEmpresas}"
+							itemLabel="#{compania.nombre}" itemValue="#{compania}" />
+					</h:selectOneMenu>
+
+
 				</div>
 			</div>
 			<br></br>
-			<p:commandButton value="Ajax Submit" id="ajax"
+			<p:commandButton value="Guardar" id="ajax"
 				action="#{polizasBean.enviar}" style="margin-right:20px;"
 				styleClass="ui-priority-primary" />
 		</h:panelGroup>

@@ -11,39 +11,39 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.stids.consciente.BD.DriverMySQL;
-import com.stids.consciente.models.TipoPoliza;
-
+import com.stids.consciente.models.Compania;
 
 @Named
 @RequestScoped
-public class TipoPolizaServices {
+public class CompaniaServices {
 
+	
+	
 	@Inject
 	DriverMySQL conection;
 	
-	private List<TipoPoliza> listTipoPoliza;
-
+	private List<Compania> listEmpresas;
+	
 	@PostConstruct
 	public void init() {
-		listTipoPoliza = new ArrayList<>();
+		listEmpresas = new ArrayList<>();
 	}
-
-	public List<TipoPoliza> getTipoPoliza() {
-		// Connection conectar=conection.getConnection();
+	
+	public List<Compania> getCompanias() {
+		
 		try {
-			ResultSet rs = conection.getConnection().createStatement().executeQuery("select * from tipo_poliza");
+			ResultSet rs = conection.getConnection().createStatement().executeQuery("select * from empresas");
 
 			while (rs.next()) {
-				TipoPoliza tipoPoliza = new TipoPoliza( rs.getInt(1),rs.getString(2));
+				Compania compania = new Compania(rs.getInt(1),rs.getLong(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
 				System.out.println(rs.getInt(1) + "  " + rs.getString(2));
-				listTipoPoliza.add(tipoPoliza);
+				listEmpresas.add(compania);
 			}
 
 		} catch (SQLException e) {
 			System.out.println("Ha ocurrido un error" + e.getMessage());
 		}
 		//conection.desconectar();
-		return listTipoPoliza;
+		return listEmpresas;
 	}
-
 }
