@@ -23,19 +23,29 @@
 
 	<h:form id="form">
 		<h:panelGroup style="width:70%">
-			
+
 			<div class="col-md-2">
 				<div class="form-group">
-					<p:outputLabel for="tipoPoliza" value="Tipo Poliza" class="control-label" />
+					<p:outputLabel for="tipoPoliza" value="Tipo Poliza"
+						class="control-label" />
+					<h:selectOneMenu id="tipoPoliza"
+						class="col-sm-10 form-control m-b-15"
+						 label="Tipo Poliza"
+						value="#{polizasBean.tipoPoliza}">
 
-					<h:selectOneMenu id="tipoPoliza" class="col-sm-10 form-control m-b-15" 	label="Tipo Poliza" value="#{polizasBean.tipoPoliza}">
-
-						<f:selectItem itemLabel="Seleccione un tipo de poliza" itemValue=""
-							noSelectionOption="true" />
+						<f:selectItem itemLabel="Seleccione un tipo de poliza"
+							itemValue="" noSelectionOption="true" />
 						<f:selectItems value="#{polizasBean.listTipoPoliza}"
-							var="tipoPoliza" itemLabel="#{tipoPoliza.nombre}"
-							itemValue="#{tipoPoliza.nombre}" />
+							 itemLabel="#{tipoPoliza.nombre}"
+							itemValue="#{tipoPoliza}" />
 					</h:selectOneMenu>
+					
+<!-- 					        <p:outputLabel for="tipoPoliza" value="Tipo Poliza" /> -->
+<!--         <p:selectOneMenu id="tipoPoliza" value="#{polizasBean.tipoPoliza}" effect="fold" editable="true"> -->
+<!--             <f:selectItem itemLabel="Select One" itemValue="" /> -->
+<!--             <f:selectItems value="#{polizasBean.listTipoPoliza}" /> -->
+<!--         </p:selectOneMenu> -->
+					
 				</div>
 			</div>
 			<br></br>

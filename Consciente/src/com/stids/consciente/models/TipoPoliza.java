@@ -1,14 +1,13 @@
 package com.stids.consciente.models;
 
-import javax.enterprise.inject.Model;
-
-@Model
 public class TipoPoliza {
-
-	private String nombre;
+	
+	
 	private Integer valor;
+	private String nombre;
+	
 
-	public TipoPoliza(String nombre, Integer valor) {
+	public TipoPoliza( Integer valor,String nombre) {
 		super();
 		this.nombre = nombre;
 		this.valor = valor;
@@ -70,6 +69,13 @@ public class TipoPoliza {
 		} else if (!valor.equals(other.valor))
 			return false;
 		return true;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return nombre;
 	}
 	
 	

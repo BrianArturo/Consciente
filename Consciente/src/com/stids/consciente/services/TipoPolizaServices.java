@@ -34,7 +34,7 @@ public class TipoPolizaServices {
 			ResultSet rs = conection.getConnection().createStatement().executeQuery("select * from tipo_poliza");
 
 			while (rs.next()) {
-				TipoPoliza tipoPoliza = new TipoPoliza(rs.getString(2), rs.getInt(1));
+				TipoPoliza tipoPoliza = new TipoPoliza( rs.getInt(1),rs.getString(2));
 				System.out.println(rs.getInt(1) + "  " + rs.getString(2));
 				listTipoPoliza.add(tipoPoliza);
 			}
