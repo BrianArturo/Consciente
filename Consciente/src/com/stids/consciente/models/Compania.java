@@ -76,7 +76,7 @@ public class Compania {
 
 	@Override
 	public String toString() {
-		return String.format("Compania [nit=%s, nombre=%s]", nit, nombre);
+		return nombre;
 	}
 
 

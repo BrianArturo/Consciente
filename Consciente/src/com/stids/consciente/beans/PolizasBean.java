@@ -15,8 +15,10 @@ import org.primefaces.event.SelectEvent;
 
 import com.stids.consciente.models.Compania;
 import com.stids.consciente.models.Polizas;
+import com.stids.consciente.models.Producto;
 import com.stids.consciente.models.TipoPoliza;
 import com.stids.consciente.services.CompaniaServices;
+import com.stids.consciente.services.ProductoServices;
 import com.stids.consciente.services.TipoPolizaServices;
 
 @Named("polizasBean")
@@ -30,19 +32,25 @@ public class PolizasBean implements Serializable {
 
 	private Integer numero;
 	private Polizas polizas;
-	private Polizas selectPolizas;
+
 	private List<Polizas> listPolizas;
+	private Polizas selectPolizas;
 
 	private List<TipoPoliza> listTipoPoliza;
-	private List<Compania> listEmpresas;
 	private TipoPoliza tipoPoliza;
+	private List<Compania> listEmpresas;
 	private Compania compania;
+	private List<Producto> listProductos;
+	private Producto producto;
 
 	@Inject
 	TipoPolizaServices tipoPolizaService;
-	
+
 	@Inject
 	CompaniaServices companiaService;
+
+	@Inject
+	ProductoServices productoService;
 
 	public PolizasBean() {
 		super();
@@ -54,6 +62,7 @@ public class PolizasBean implements Serializable {
 		listPolizas = new ArrayList<>();
 		listTipoPoliza = new ArrayList<>();
 		listEmpresas = new ArrayList<>();
+		listProductos = new ArrayList<Producto>();
 		iniciar();
 
 	}
@@ -61,13 +70,14 @@ public class PolizasBean implements Serializable {
 	private void iniciar() {
 		listTipoPoliza = tipoPolizaService.getTipoPoliza();
 		listEmpresas = companiaService.getCompanias();
+		listProductos = productoService.getProductos();
 
 		Polizas polizas = new Polizas();
 		polizas.setFecExpedicion("12334");
 		polizas.setFecFinVigencia("4567");
 		polizas.setNumPoliza(1L);
 		polizas.setNumSoat(222L);
-		
+
 		listPolizas.add(polizas);
 		listPolizas.add(polizas);
 		listPolizas.add(polizas);
@@ -123,8 +133,6 @@ public class PolizasBean implements Serializable {
 	public void setTipoPoliza(TipoPoliza tipoPoliza) {
 		this.tipoPoliza = tipoPoliza;
 	}
-	
-	
 
 	public List<Compania> getListEmpresas() {
 		return listEmpresas;
@@ -133,8 +141,6 @@ public class PolizasBean implements Serializable {
 	public void setListEmpresas(List<Compania> listEmpresas) {
 		this.listEmpresas = listEmpresas;
 	}
-	
-	
 
 	public Compania getCompania() {
 		return compania;
@@ -142,6 +148,22 @@ public class PolizasBean implements Serializable {
 
 	public void setCompania(Compania compania) {
 		this.compania = compania;
+	}
+
+	public List<Producto> getListProductos() {
+		return listProductos;
+	}
+
+	public void setListProductos(List<Producto> listProductos) {
+		this.listProductos = listProductos;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
 
 	public void onRowSelect(SelectEvent event) {
