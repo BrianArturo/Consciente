@@ -2,6 +2,7 @@ package com.stids.consciente.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,10 +14,15 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
+import com.stids.consciente.models.Cliente;
 import com.stids.consciente.models.Compania;
 import com.stids.consciente.models.Polizas;
+import com.stids.consciente.models.Producto;
+import com.stids.consciente.models.TipoCliente;
 import com.stids.consciente.models.TipoPoliza;
 import com.stids.consciente.services.CompaniaServices;
+import com.stids.consciente.services.ProductoServices;
+import com.stids.consciente.services.TipoClienteServices;
 import com.stids.consciente.services.TipoPolizaServices;
 
 @Named("polizasBean")
@@ -28,21 +34,41 @@ public class PolizasBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1555777803758028648L;
 
-	private Integer numero;
+	private String numeroPoliza;
+	private Integer numeroSoat;
+	private String numeroPlaca;
+
+	private Date fechaExpPoliza;
+	private Date fechaIniVigencia;
+	private Date fechaFinVigencia;
+	private Date fechaPago;
+
 	private Polizas polizas;
-	private Polizas selectPolizas;
 	private List<Polizas> listPolizas;
+	private Polizas selectPolizas;
 
 	private List<TipoPoliza> listTipoPoliza;
-	private List<Compania> listEmpresas;
 	private TipoPoliza tipoPoliza;
+	private List<Compania> listEmpresas;
 	private Compania compania;
+	private List<Producto> listProductos;
+	private Producto producto;
+
+	private List<TipoCliente> listTipoCliente;
+	private TipoCliente tipoCliente;
+	private Cliente cliente;
 
 	@Inject
 	TipoPolizaServices tipoPolizaService;
-	
+
 	@Inject
 	CompaniaServices companiaService;
+
+	@Inject
+	ProductoServices productoService;
+
+	@Inject
+	TipoClienteServices tipoClienteService;
 
 	public PolizasBean() {
 		super();
@@ -54,6 +80,8 @@ public class PolizasBean implements Serializable {
 		listPolizas = new ArrayList<>();
 		listTipoPoliza = new ArrayList<>();
 		listEmpresas = new ArrayList<>();
+		listProductos = new ArrayList<>();
+		listTipoCliente = new ArrayList<>();
 		iniciar();
 
 	}
@@ -61,13 +89,15 @@ public class PolizasBean implements Serializable {
 	private void iniciar() {
 		listTipoPoliza = tipoPolizaService.getTipoPoliza();
 		listEmpresas = companiaService.getCompanias();
+		listProductos = productoService.getProductos();
+		listTipoCliente = tipoClienteService.getTipoCliente();
 
 		Polizas polizas = new Polizas();
 		polizas.setFecExpedicion("12334");
 		polizas.setFecFinVigencia("4567");
 		polizas.setNumPoliza(1L);
 		polizas.setNumSoat(222L);
-		
+
 		listPolizas.add(polizas);
 		listPolizas.add(polizas);
 		listPolizas.add(polizas);
@@ -100,12 +130,12 @@ public class PolizasBean implements Serializable {
 		this.polizas = polizas;
 	}
 
-	public Integer getNumero() {
-		return numero;
+	public String getNumero() {
+		return numeroPoliza;
 	}
 
-	public void setNumero(Integer numero) {
-		this.numero = numero;
+	public void setNumero(String numeroPoliza) {
+		this.numeroPoliza = numeroPoliza;
 	}
 
 	public List<TipoPoliza> getListTipoPoliza() {
@@ -123,8 +153,6 @@ public class PolizasBean implements Serializable {
 	public void setTipoPoliza(TipoPoliza tipoPoliza) {
 		this.tipoPoliza = tipoPoliza;
 	}
-	
-	
 
 	public List<Compania> getListEmpresas() {
 		return listEmpresas;
@@ -133,8 +161,6 @@ public class PolizasBean implements Serializable {
 	public void setListEmpresas(List<Compania> listEmpresas) {
 		this.listEmpresas = listEmpresas;
 	}
-	
-	
 
 	public Compania getCompania() {
 		return compania;
@@ -142,6 +168,102 @@ public class PolizasBean implements Serializable {
 
 	public void setCompania(Compania compania) {
 		this.compania = compania;
+	}
+
+	public List<Producto> getListProductos() {
+		return listProductos;
+	}
+
+	public void setListProductos(List<Producto> listProductos) {
+		this.listProductos = listProductos;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+	public String getNumeroPoliza() {
+		return numeroPoliza;
+	}
+
+	public void setNumeroPoliza(String numeroPoliza) {
+		this.numeroPoliza = numeroPoliza;
+	}
+
+	public Integer getNumeroSoat() {
+		return numeroSoat;
+	}
+
+	public void setNumeroSoat(Integer numeroSoat) {
+		this.numeroSoat = numeroSoat;
+	}
+
+	public String getNumeroPlaca() {
+		return numeroPlaca;
+	}
+
+	public void setNumeroPlaca(String numeroPlaca) {
+		this.numeroPlaca = numeroPlaca;
+	}
+
+	public Date getFechaExpPoliza() {
+		return fechaExpPoliza;
+	}
+
+	public void setFechaExpPoliza(Date fechaExpPoliza) {
+		this.fechaExpPoliza = fechaExpPoliza;
+	}
+
+	public Date getFechaIniVigencia() {
+		return fechaIniVigencia;
+	}
+
+	public void setFechaIniVigencia(Date fechaIniVigencia) {
+		this.fechaIniVigencia = fechaIniVigencia;
+	}
+
+	public Date getFechaFinVigencia() {
+		return fechaFinVigencia;
+	}
+
+	public void setFechaFinVigencia(Date fechaFinVigencia) {
+		this.fechaFinVigencia = fechaFinVigencia;
+	}
+
+	public Date getFechaPago() {
+		return fechaPago;
+	}
+
+	public void setFechaPago(Date fechaPago) {
+		this.fechaPago = fechaPago;
+	}
+
+	public List<TipoCliente> getListTipoCliente() {
+		return listTipoCliente;
+	}
+
+	public void setListTipoCliente(List<TipoCliente> listTipoCliente) {
+		this.listTipoCliente = listTipoCliente;
+	}
+
+	public TipoCliente getTipoCliente() {
+		return tipoCliente;
+	}
+
+	public void setTipoCliente(TipoCliente tipoCliente) {
+		this.tipoCliente = tipoCliente;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public void onRowSelect(SelectEvent event) {

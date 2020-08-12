@@ -43,7 +43,7 @@ public class CompaniaServices {
 		} catch (SQLException e) {
 			System.out.println("Ha ocurrido un error" + e.getMessage());
 		}
-		//conection.desconectar();
+		
 		return listEmpresas;
 	}
 }

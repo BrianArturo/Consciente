@@ -12,25 +12,26 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="shortcut icon" type="image/x-icon" href="../resources/img/Ico.ico" />
-	
+	<link rel="shortcut icon" type="image/x-icon"
+		href="../resources/img/Ico.ico" />
 
-	 
- 	 <h:outputStylesheet library="css" name="sb-admin-2.css" /> 
-	 
-	 
-	 
-	 <h:outputScript library="js" name="jquery.min.js" />
-	 <h:outputScript library="js" name="bootstrap.bundle.min.js" />
-	 <h:outputScript library="js" name="jquery.easing.min.js" />
-	 <h:outputScript library="js" name="sb-admin-2.min.js" />
-	 
-	 <h:outputScript library="js" name="jquery.dataTables.min.js" />
-	 <h:outputScript library="js" name="dataTables.bootstrap4.min.js" />
-	 <h:outputScript library="js" name="datatables-demo.js" />
 
-<!--   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
-	 
+
+	<h:outputStylesheet library="css" name="sb-admin-2.css" />
+
+
+
+	<!-- 	<h:outputScript library="js" name="jquery.min.js" /> -->
+	<!-- 	<h:outputScript library="js" name="bootstrap.bundle.min.js" /> -->
+	<!-- 	<h:outputScript library="js" name="jquery.easing.min.js" /> -->
+	<!-- 	<h:outputScript library="js" name="sb-admin-2.min.js" /> -->
+
+	<!-- 	<h:outputScript library="js" name="jquery.dataTables.min.js" /> -->
+	<!-- 	<h:outputScript library="js" name="dataTables.bootstrap4.min.js" /> -->
+	<!-- 	<h:outputScript library="js" name="datatables-demo.js" /> -->
+
+	<!--   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
+
 </h:head>
 
 
@@ -39,47 +40,106 @@
 	<h2>Sistema de polizas</h2>
 
 	<h:form id="form">
-		<h:panelGroup style="width:70%">
-
-			<div class="col-md-2">
-				<div class="form-group">
-					<p:outputLabel for="tipoPoliza" value="Tipo Poliza"
-						class="control-label" />
-					<h:selectOneMenu id="tipoPoliza"
-						class="col-sm-10 form-control m-b-15" label="Tipo Poliza"
-						value="#{polizasBean.tipoPoliza}">
-
-						<f:selectItem itemLabel="Seleccione un tipo de poliza"
-							itemValue="" noSelectionOption="true" />
-						<f:selectItems value="#{polizasBean.listTipoPoliza}"
-							itemLabel="#{tipoPoliza.nombre}" itemValue="#{tipoPoliza}" />
-					</h:selectOneMenu>
-				</div>
-			</div>
-
-			<div class="col-md-2">
-				<div class="form-group">
-					<p:outputLabel for="empresas" value="Tipo Compañia"
-						class="control-label" />
-					<h:selectOneMenu id="empresas" 
-						filter="true" filterMatchMode="startsWith" effect="fade"
-						class="col-sm-10 form-control m-b-15" label="Tipo Compañia"
-						value="#{polizasBean.compania}">
-
-						<f:selectItem itemLabel="Seleccione un tipo de compania"
-							itemValue="" noSelectionOption="true" />
-						<f:selectItems value="#{polizasBean.listEmpresas}"
-							itemLabel="#{compania.nombre}" itemValue="#{compania}" />
-					</h:selectOneMenu>
 
 
-				</div>
-			</div>
-			<br></br>
-			<p:commandButton value="Guardar" id="ajax"
-				action="#{polizasBean.enviar}" style="margin-right:20px;"
-				styleClass="ui-priority-primary" />
-		</h:panelGroup>
+		<p:panelGrid columns="4" layout="grid"
+			columnClasses="p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4, p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4"
+			contentStyleClass="p-align-baseline ui-fluid">
+
+
+			
+				<p:outputLabel for="tipoPoliza" value="Tipo Poliza" />
+				<p:selectOneMenu id="tipoPoliza" label="Tipo Poliza"
+					class=""
+					value="#{polizasBean.tipoPoliza}">
+
+					<f:selectItem itemLabel="Seleccione un tipo de poliza" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{polizasBean.listTipoPoliza}"
+						itemLabel="#{tipoPoliza.nombre}" itemValue="#{tipoPoliza}" />
+				</p:selectOneMenu>
+			
+
+			
+
+				<p:outputLabel for="empresas" value="Tipo Compañia" />
+				<p:selectOneMenu id="empresas" filter="true" class=""
+					filterMatchMode="startsWith" effect="fade" label="Tipo Compañia"
+					value="#{polizasBean.compania}">
+
+					<f:selectItem itemLabel="Seleccione un tipo de compania"
+						itemValue="" noSelectionOption="true" />
+					<f:selectItems value="#{polizasBean.listEmpresas}"
+						itemLabel="#{compania.nombre}" itemValue="#{compania}" />
+				</p:selectOneMenu>
+
+			
+
+
+
+				<h:outputLabel for="productos" value="Tipo Producto" />
+				<p:selectOneMenu id="productos" filter="true" class=""
+					filterMatchMode="startsWith" effect="fade" label="Tipo Producto"
+					value="#{polizasBean.producto}">
+
+					<f:selectItem itemLabel="Seleccione un tipo de producto"
+						itemValue="" noSelectionOption="true" />
+					<f:selectItems value="#{polizasBean.listProductos}"
+						itemLabel="#{producto.nombre}" itemValue="#{producto}" />
+				</p:selectOneMenu>
+
+			
+			<p:outputLabel for="numeroPoliza" value="Número de Poliza" />
+			<p:inputText id="numeroPoliza" value="#{polizasBean.numeroPoliza}" />
+
+			<p:outputLabel for="numeroSoat" value="Número de SOAT" />
+			<p:inputNumber id="numeroSoat" value="#{polizasBean.numeroSoat}" />
+
+			<p:outputLabel for="numeroPlaca" value="Número de PLACA" />
+			<p:inputText id="numeroPlaca" value="#{polizasBean.numeroPlaca}" />
+
+
+
+			<p:outputLabel for="fechaExpPoliza" value="Fecha Poliza" />
+			<p:datePicker id="fechaExpPoliza" showIcon="false" style="width:auto"
+				value="#{polizaBean.fechaExpPoliza}" />
+
+			<p:outputLabel for="fechaIniVigencia" value="Fecha Inicio Vigencia" />
+			<p:datePicker id="fechaIniVigencia" showIcon="false"
+				style="width:auto" value="#{polizaBean.fechaIniVigencia}" />
+
+			<p:outputLabel for="fechaFinVigencia" value="Fecha Fin Vigencia" />
+			<p:datePicker id="fechaFinVigencia" showIcon="false"
+				style="width:auto" value="#{polizaBean.fechaFinVigencia}" />
+
+			<p:outputLabel for="fechaPago" value="Fecha Pago" />
+			<p:datePicker id="fechaPago" showIcon="false" style="width:auto"
+				value="#{polizaBean.fechaPago}" />
+				
+				
+				
+				
+				<h:outputLabel for="tipocliente" value="Tipo Cliente" />
+				<p:selectOneMenu id="tipocliente" 
+					label="Tipo Cliente"
+					value="#{polizasBean.tipoCliente}">
+
+					<f:selectItem itemLabel="Seleccione un tipo de Cliente"
+						itemValue="" noSelectionOption="true" />
+					<f:selectItems value="#{polizasBean.listTipoCliente}"
+						itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente}" />
+				</p:selectOneMenu>
+
+
+		</p:panelGrid>
+		
+		
+		
+		
+		<p:commandButton value="Guardar" id="ajax"
+			action="#{polizasBean.enviar}" style="margin-right:20px;"
+			styleClass="ui-priority-primary" />
+
 
 		<h:panelGroup>
 			<p:dataTable var="polizas" value="#{polizasBean.listPolizas}"
@@ -140,7 +200,6 @@
 			</p:dialog>
 
 		</h:panelGroup>
-
 	</h:form>
 
 </h:body>
