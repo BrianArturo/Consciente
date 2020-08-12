@@ -2,7 +2,7 @@ package com.stids.consciente.models;
 
 public class Cliente {
 
-	private Tipo tipo;
+	private TipoCliente tipoCliente;
 	private String tomador;
 	private Long identificacion;
 	private String direccion;
@@ -15,12 +15,12 @@ public class Cliente {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Tipo getTipo() {
-		return tipo;
+	public TipoCliente getTipoCliente() {
+		return tipoCliente;
 	}
 
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
+	public void setTipoCliente(TipoCliente tipoCliente) {
+		this.tipoCliente = tipoCliente;
 	}
 
 	public String getTomador() {

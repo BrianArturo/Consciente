@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-08-2020 a las 16:24:40
+-- Tiempo de generación: 12-08-2020 a las 21:49:25
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.2.32
 
@@ -62,7 +62,29 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`id`, `codigo`, `nombre`) VALUES
 (1, '001', 'Producto1'),
-(2, '001', 'Producto2');
+(2, '001', 'Producto2'),
+(3, '005', 'Rojo'),
+(4, '004', 'Verde');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipoclientes`
+--
+
+CREATE TABLE `tipoclientes` (
+  `id` int(100) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `otro` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tipoclientes`
+--
+
+INSERT INTO `tipoclientes` (`id`, `nombre`, `otro`) VALUES
+(1, 'Empresarial', ''),
+(2, 'Personal', '');
 
 -- --------------------------------------------------------
 

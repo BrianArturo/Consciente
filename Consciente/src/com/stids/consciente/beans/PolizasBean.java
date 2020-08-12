@@ -14,12 +14,15 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
+import com.stids.consciente.models.Cliente;
 import com.stids.consciente.models.Compania;
 import com.stids.consciente.models.Polizas;
 import com.stids.consciente.models.Producto;
+import com.stids.consciente.models.TipoCliente;
 import com.stids.consciente.models.TipoPoliza;
 import com.stids.consciente.services.CompaniaServices;
 import com.stids.consciente.services.ProductoServices;
+import com.stids.consciente.services.TipoClienteServices;
 import com.stids.consciente.services.TipoPolizaServices;
 
 @Named("polizasBean")
@@ -34,13 +37,11 @@ public class PolizasBean implements Serializable {
 	private String numeroPoliza;
 	private Integer numeroSoat;
 	private String numeroPlaca;
-	
-	
+
 	private Date fechaExpPoliza;
 	private Date fechaIniVigencia;
 	private Date fechaFinVigencia;
 	private Date fechaPago;
-	
 
 	private Polizas polizas;
 	private List<Polizas> listPolizas;
@@ -53,6 +54,10 @@ public class PolizasBean implements Serializable {
 	private List<Producto> listProductos;
 	private Producto producto;
 
+	private List<TipoCliente> listTipoCliente;
+	private TipoCliente tipoCliente;
+	private Cliente cliente;
+
 	@Inject
 	TipoPolizaServices tipoPolizaService;
 
@@ -61,6 +66,9 @@ public class PolizasBean implements Serializable {
 
 	@Inject
 	ProductoServices productoService;
+
+	@Inject
+	TipoClienteServices tipoClienteService;
 
 	public PolizasBean() {
 		super();
@@ -72,7 +80,8 @@ public class PolizasBean implements Serializable {
 		listPolizas = new ArrayList<>();
 		listTipoPoliza = new ArrayList<>();
 		listEmpresas = new ArrayList<>();
-		listProductos = new ArrayList<Producto>();
+		listProductos = new ArrayList<>();
+		listTipoCliente = new ArrayList<>();
 		iniciar();
 
 	}
@@ -81,6 +90,7 @@ public class PolizasBean implements Serializable {
 		listTipoPoliza = tipoPolizaService.getTipoPoliza();
 		listEmpresas = companiaService.getCompanias();
 		listProductos = productoService.getProductos();
+		listTipoCliente = tipoClienteService.getTipoCliente();
 
 		Polizas polizas = new Polizas();
 		polizas.setFecExpedicion("12334");
@@ -199,7 +209,6 @@ public class PolizasBean implements Serializable {
 	public void setNumeroPlaca(String numeroPlaca) {
 		this.numeroPlaca = numeroPlaca;
 	}
-	
 
 	public Date getFechaExpPoliza() {
 		return fechaExpPoliza;
@@ -231,6 +240,30 @@ public class PolizasBean implements Serializable {
 
 	public void setFechaPago(Date fechaPago) {
 		this.fechaPago = fechaPago;
+	}
+
+	public List<TipoCliente> getListTipoCliente() {
+		return listTipoCliente;
+	}
+
+	public void setListTipoCliente(List<TipoCliente> listTipoCliente) {
+		this.listTipoCliente = listTipoCliente;
+	}
+
+	public TipoCliente getTipoCliente() {
+		return tipoCliente;
+	}
+
+	public void setTipoCliente(TipoCliente tipoCliente) {
+		this.tipoCliente = tipoCliente;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public void onRowSelect(SelectEvent event) {

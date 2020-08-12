@@ -42,7 +42,7 @@
 	<h:form id="form">
 
 
-		<p:panelGrid columns="6" layout="grid"
+		<p:panelGrid columns="4" layout="grid"
 			columnClasses="p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4, p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4"
 			contentStyleClass="p-align-baseline ui-fluid">
 
@@ -115,9 +115,27 @@
 			<p:outputLabel for="fechaPago" value="Fecha Pago" />
 			<p:datePicker id="fechaPago" showIcon="false" style="width:auto"
 				value="#{polizaBean.fechaPago}" />
+				
+				
+				
+				
+				<h:outputLabel for="tipocliente" value="Tipo Cliente" />
+				<p:selectOneMenu id="tipocliente" 
+					label="Tipo Cliente"
+					value="#{polizasBean.tipoCliente}">
+
+					<f:selectItem itemLabel="Seleccione un tipo de Cliente"
+						itemValue="" noSelectionOption="true" />
+					<f:selectItems value="#{polizasBean.listTipoCliente}"
+						itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente}" />
+				</p:selectOneMenu>
 
 
 		</p:panelGrid>
+		
+		
+		
+		
 		<p:commandButton value="Guardar" id="ajax"
 			action="#{polizasBean.enviar}" style="margin-right:20px;"
 			styleClass="ui-priority-primary" />
