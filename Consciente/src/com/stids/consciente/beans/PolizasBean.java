@@ -2,6 +2,7 @@ package com.stids.consciente.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -30,9 +31,18 @@ public class PolizasBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1555777803758028648L;
 
-	private Integer numero;
-	private Polizas polizas;
+	private String numeroPoliza;
+	private Integer numeroSoat;
+	private String numeroPlaca;
+	
+	
+	private Date fechaExpPoliza;
+	private Date fechaIniVigencia;
+	private Date fechaFinVigencia;
+	private Date fechaPago;
+	
 
+	private Polizas polizas;
 	private List<Polizas> listPolizas;
 	private Polizas selectPolizas;
 
@@ -110,12 +120,12 @@ public class PolizasBean implements Serializable {
 		this.polizas = polizas;
 	}
 
-	public Integer getNumero() {
-		return numero;
+	public String getNumero() {
+		return numeroPoliza;
 	}
 
-	public void setNumero(Integer numero) {
-		this.numero = numero;
+	public void setNumero(String numeroPoliza) {
+		this.numeroPoliza = numeroPoliza;
 	}
 
 	public List<TipoPoliza> getListTipoPoliza() {
@@ -164,6 +174,63 @@ public class PolizasBean implements Serializable {
 
 	public void setProducto(Producto producto) {
 		this.producto = producto;
+	}
+
+	public String getNumeroPoliza() {
+		return numeroPoliza;
+	}
+
+	public void setNumeroPoliza(String numeroPoliza) {
+		this.numeroPoliza = numeroPoliza;
+	}
+
+	public Integer getNumeroSoat() {
+		return numeroSoat;
+	}
+
+	public void setNumeroSoat(Integer numeroSoat) {
+		this.numeroSoat = numeroSoat;
+	}
+
+	public String getNumeroPlaca() {
+		return numeroPlaca;
+	}
+
+	public void setNumeroPlaca(String numeroPlaca) {
+		this.numeroPlaca = numeroPlaca;
+	}
+	
+
+	public Date getFechaExpPoliza() {
+		return fechaExpPoliza;
+	}
+
+	public void setFechaExpPoliza(Date fechaExpPoliza) {
+		this.fechaExpPoliza = fechaExpPoliza;
+	}
+
+	public Date getFechaIniVigencia() {
+		return fechaIniVigencia;
+	}
+
+	public void setFechaIniVigencia(Date fechaIniVigencia) {
+		this.fechaIniVigencia = fechaIniVigencia;
+	}
+
+	public Date getFechaFinVigencia() {
+		return fechaFinVigencia;
+	}
+
+	public void setFechaFinVigencia(Date fechaFinVigencia) {
+		this.fechaFinVigencia = fechaFinVigencia;
+	}
+
+	public Date getFechaPago() {
+		return fechaPago;
+	}
+
+	public void setFechaPago(Date fechaPago) {
+		this.fechaPago = fechaPago;
 	}
 
 	public void onRowSelect(SelectEvent event) {
