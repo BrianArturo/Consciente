@@ -12,7 +12,6 @@ import javax.inject.Named;
 
 import com.stids.consciente.BD.DriverMySQL;
 import com.stids.consciente.models.TipoCliente;
-import com.stids.consciente.models.TipoPoliza;
 
 @Named
 @RequestScoped

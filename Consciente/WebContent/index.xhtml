@@ -56,7 +56,9 @@
 
 												<p:inputText id="user"
 													class="form-control form-control-user"
-													value="#{loginBean.user}" required="true" />
+													value="#{loginBean.user}" required="true"  >
+													<p:keyFilter for="user" regEx="/[a-záéíóúñ0-9]/i" />
+													</p:inputText>
 											</div>
 											<div class="form-group">
 
