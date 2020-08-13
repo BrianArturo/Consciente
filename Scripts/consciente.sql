@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-08-2020 a las 21:49:25
+-- Tiempo de generación: 13-08-2020 a las 16:20:04
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.2.32
 
@@ -108,6 +108,52 @@ INSERT INTO `tipopolizas` (`id`, `nombre`, `creada`, `modificada`) VALUES
 (2, 'Renovaciòn', '0000-00-00', '0000-00-00'),
 (3, 'Inclusiòn', '0000-00-00', '0000-00-00'),
 (4, 'Modificaciòn', '0000-00-00', '0000-00-00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(100) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `identificacion` varchar(100) NOT NULL,
+  `user` varchar(100) NOT NULL,
+  `clave` varchar(250) NOT NULL,
+  `rol` enum('SuperAdmin','Admin','Poliza','') NOT NULL,
+  `fechaCreado` date NOT NULL DEFAULT current_timestamp(),
+  `fechaModificado` date NOT NULL DEFAULT current_timestamp(),
+  `estado` enum('Activo','Inactivo','','') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `nombre`, `identificacion`, `user`, `clave`, `rol`, `fechaCreado`, `fechaModificado`, `estado`) VALUES
+(1, 'Super Admin', '111111', 'Jhon', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'SuperAdmin', '2020-08-13', '2020-08-13', 'Activo'),
+(2, 'Admin', '222222', 'Doe', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Admin', '2020-08-13', '2020-08-13', 'Activo');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
