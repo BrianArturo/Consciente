@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.SelectEvent;
 
@@ -77,6 +78,13 @@ public class PolizasBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		
+		//gson = new GsonBuilder().create();
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		String dataEncrypt= (String) session.getAttribute("usuario");
+		
+		
 		listPolizas = new ArrayList<>();
 		listTipoPoliza = new ArrayList<>();
 		listEmpresas = new ArrayList<>();
