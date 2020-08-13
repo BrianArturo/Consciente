@@ -1,18 +1,21 @@
 package com.stids.consciente.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable{
 
+	
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String nombre;
-	private Long identificacion;
+	private String identificacion;
 	private String user;
 	private String clave;
 	private String rol;
 	private Date fechaCreado;
 	private Date fechaModificado;
-	private Integer estado;
+	private String estado;
 
 	public User() {
 		super();
@@ -35,11 +38,11 @@ public class User {
 		this.nombre = nombre;
 	}
 
-	public Long getIdentificacion() {
+	public String getIdentificacion() {
 		return identificacion;
 	}
 
-	public void setIdentificacion(Long identificacion) {
+	public void setIdentificacion(String identificacion) {
 		this.identificacion = identificacion;
 	}
 
@@ -83,11 +86,11 @@ public class User {
 		this.fechaModificado = fechaModificado;
 	}
 
-	public Integer getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Integer estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 

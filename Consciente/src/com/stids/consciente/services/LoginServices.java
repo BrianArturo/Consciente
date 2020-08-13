@@ -19,25 +19,31 @@ public class LoginServices {
 	@Inject
 	DriverMySQL conection;
 
-	private User user;
+	private User usuario;
 
 	@PostConstruct
 	public void init() {
-		user = new User();
+		usuario = new User();
 	}
 
-	public User getUser(String login, String password) {
+	public User getUser(String user, String password) {
 
 		try {
 			PreparedStatement pstBuscarCodigo;
 			
 			String sqlBusqueda = "SELECT * FROM users WHERE user=? and clave=?";
 			pstBuscarCodigo = conection.getConnection().prepareStatement(sqlBusqueda);
-			pstBuscarCodigo.setString(1, login);
+			pstBuscarCodigo.setString(1, user);
 			pstBuscarCodigo.setString(2, password);
 			ResultSet rs = pstBuscarCodigo.executeQuery();
 			if (rs.next()) {
 				System.out.println(rs.getLong(1) + "  " + rs.getString(2));
+				usuario.setId(rs.getInt(1));
+				usuario.setNombre(rs.getString(2));
+				usuario.setIdentificacion(rs.getString(3));
+				usuario.setUser(rs.getString(4));
+				usuario.setRol(rs.getString(6));
+				usuario.setEstado(rs.getString(9));
 
 			} else {
 				return null;
@@ -47,7 +53,7 @@ public class LoginServices {
 			System.out.println("Ha ocurrido un error" + e.getMessage());
 		}
 
-		return user;
+		return usuario;
 	}
 
 }

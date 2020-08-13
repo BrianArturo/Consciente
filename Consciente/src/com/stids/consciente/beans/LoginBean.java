@@ -1,12 +1,19 @@
 package com.stids.consciente.beans;
 
 
+import java.io.IOException;
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
+import org.primefaces.PrimeFaces;
+
+import com.stids.consciente.models.User;
 import com.stids.consciente.services.LoginServices;
 import com.stids.consciente.services.TipoClienteServices;
 
@@ -20,16 +27,43 @@ public class LoginBean  implements Serializable{
 	
 	private String user;
 	private String password;
+	private User usuario;
 	
 	
 	@Inject
 	LoginServices loginService;
 	
+	@PostConstruct
+	public void init() {
+		
+	}
+	
 	
 	public void login() {
 		System.out.println("user "+ user+ " pass "+password);
 		password=getHash(password, "SHA1");
-		loginService.getUser(user, password);
+		usuario=loginService.getUser(user, password);
+		if(usuario != null && usuario.getEstado().equals("Activo")) {
+		
+			
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+			session.setAttribute("usuario", usuario);
+			try {
+				context.getExternalContext().redirect("pages/poliza.xhtml");
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+			System.out.println("Redireccionando");
+		}else {
+			
+			PrimeFaces.current().executeScript("document.getElementById('form1:user').value = ''");
+			PrimeFaces.current().executeScript("document.getElementById('form1:password').value = ''");
+			PrimeFaces.current().executeScript("PF('dlg3').show()");
+			System.out.println("Usuario o contraseña incorrecta");
+		}
+		
 		
 		
 		
