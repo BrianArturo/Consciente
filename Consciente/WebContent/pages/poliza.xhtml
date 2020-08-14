@@ -1,6 +1,5 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -8,200 +7,251 @@
 	xmlns:o="http://omnifaces.org/ui">
 
 
-<h:head>
+	<ui:define name="titleOption">Sistema de polizas</ui:define>
+	<ui:define name="content">
 
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="shortcut icon" type="image/x-icon"
-		href="../resources/img/Ico.ico" />
+		<h:body>
 
+			<h:form id="form" styleClass="container-fluid">
+				<p:growl id="msgs" showDetail="true"
+					skipDetailIfEqualsSummary="true" />
+				<p:panel header="Selecciona toda la información"
+					style="margin-bottom:10px;">
+					<div class="row centered-form">
 
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
 
-	<h:outputStylesheet library="css" name="sb-admin-2.css" />
+								<p:outputLabel for="tipoPoliza" value="Tipo Poliza" />
+								<br></br>
+								<p:selectOneMenu id="tipoPoliza" label="Tipo Poliza" class=""
+									value="#{polizasBean.tipoPoliza}" style="width:100%">
 
-
-
-	<!-- 	<h:outputScript library="js" name="jquery.min.js" /> -->
-	<!-- 	<h:outputScript library="js" name="bootstrap.bundle.min.js" /> -->
-	<!-- 	<h:outputScript library="js" name="jquery.easing.min.js" /> -->
-	<!-- 	<h:outputScript library="js" name="sb-admin-2.min.js" /> -->
-
-	<!-- 	<h:outputScript library="js" name="jquery.dataTables.min.js" /> -->
-	<!-- 	<h:outputScript library="js" name="dataTables.bootstrap4.min.js" /> -->
-	<!-- 	<h:outputScript library="js" name="datatables-demo.js" /> -->
-
-	<!--   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
-
-</h:head>
-
-
-<h:body>
-
-	<h2>Sistema de polizas</h2>
-
-	<h:form id="form">
+									<f:selectItem itemLabel="Seleccione un tipo de poliza"
+										itemValue="" noSelectionOption="true" />
+									<f:selectItems value="#{polizasBean.listTipoPoliza}"
+										itemLabel="#{tipoPoliza.nombre}" itemValue="#{tipoPoliza}" />
+								</p:selectOneMenu>
 
 
-		<p:panelGrid columns="4" layout="grid"
-			columnClasses="p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4, p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4"
-			contentStyleClass="p-align-baseline ui-fluid">
+							</div>
+						</div>
 
 
-			
-				<p:outputLabel for="tipoPoliza" value="Tipo Poliza" />
-				<p:selectOneMenu id="tipoPoliza" label="Tipo Poliza"
-					class=""
-					value="#{polizasBean.tipoPoliza}">
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
 
-					<f:selectItem itemLabel="Seleccione un tipo de poliza" itemValue=""
-						noSelectionOption="true" />
-					<f:selectItems value="#{polizasBean.listTipoPoliza}"
-						itemLabel="#{tipoPoliza.nombre}" itemValue="#{tipoPoliza}" />
-				</p:selectOneMenu>
-			
+								<p:outputLabel for="empresas" value="Tipo Compañia" />
+								<br></br>
+								<p:selectOneMenu id="empresas" filter="true" class=""
+									filterMatchMode="startsWith" effect="fade"
+									label="Tipo Compañia" value="#{polizasBean.compania}"
+									style="width:100%">
 
-			
-
-				<p:outputLabel for="empresas" value="Tipo Compañia" />
-				<p:selectOneMenu id="empresas" filter="true" class=""
-					filterMatchMode="startsWith" effect="fade" label="Tipo Compañia"
-					value="#{polizasBean.compania}">
-
-					<f:selectItem itemLabel="Seleccione un tipo de compania"
-						itemValue="" noSelectionOption="true" />
-					<f:selectItems value="#{polizasBean.listEmpresas}"
-						itemLabel="#{compania.nombre}" itemValue="#{compania}" />
-				</p:selectOneMenu>
-
-			
+									<f:selectItem itemLabel="Seleccione un tipo de compania"
+										itemValue="" noSelectionOption="true" />
+									<f:selectItems value="#{polizasBean.listEmpresas}"
+										itemLabel="#{compania.nombre}" itemValue="#{compania}" />
+								</p:selectOneMenu>
+							</div>
+						</div>
 
 
 
-				<h:outputLabel for="productos" value="Tipo Producto" />
-				<p:selectOneMenu id="productos" filter="true" class=""
-					filterMatchMode="startsWith" effect="fade" label="Tipo Producto"
-					value="#{polizasBean.producto}">
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+								<h:outputLabel for="productos" value="Tipo Producto" />
+								<br></br>
+								<p:selectOneMenu id="productos" filter="true" class=""
+									filterMatchMode="startsWith" effect="fade"
+									label="Tipo Producto" value="#{polizasBean.producto}"
+									style="width:100%">
 
-					<f:selectItem itemLabel="Seleccione un tipo de producto"
-						itemValue="" noSelectionOption="true" />
-					<f:selectItems value="#{polizasBean.listProductos}"
-						itemLabel="#{producto.nombre}" itemValue="#{producto}" />
-				</p:selectOneMenu>
+									<f:selectItem itemLabel="Seleccione un tipo de producto"
+										itemValue="" noSelectionOption="true" />
+									<f:selectItems value="#{polizasBean.listProductos}"
+										itemLabel="#{producto.nombre}" itemValue="#{producto}" />
+								</p:selectOneMenu>
 
-			
-			<p:outputLabel for="numeroPoliza" value="Número de Poliza" />
-			<p:inputText id="numeroPoliza" value="#{polizasBean.numeroPoliza}" />
-
-			<p:outputLabel for="numeroSoat" value="Número de SOAT" />
-			<p:inputNumber id="numeroSoat" value="#{polizasBean.numeroSoat}" />
-
-			<p:outputLabel for="numeroPlaca" value="Número de PLACA" />
-			<p:inputText id="numeroPlaca" value="#{polizasBean.numeroPlaca}" />
+							</div>
+						</div>
+					</div>
 
 
 
-			<p:outputLabel for="fechaExpPoliza" value="Fecha Poliza" />
-			<p:datePicker id="fechaExpPoliza" showIcon="false" style="width:auto"
-				value="#{polizaBean.fechaExpPoliza}" />
+					<div class="row centered-form">
 
-			<p:outputLabel for="fechaIniVigencia" value="Fecha Inicio Vigencia" />
-			<p:datePicker id="fechaIniVigencia" showIcon="false"
-				style="width:auto" value="#{polizaBean.fechaIniVigencia}" />
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
 
-			<p:outputLabel for="fechaFinVigencia" value="Fecha Fin Vigencia" />
-			<p:datePicker id="fechaFinVigencia" showIcon="false"
-				style="width:auto" value="#{polizaBean.fechaFinVigencia}" />
+								<p:outputLabel for="numeroPoliza" value="Número de Poliza" />
+								<br></br>
+								<p:inputText id="numeroPoliza"
+									value="#{polizasBean.numeroPoliza}" />
+							</div>
+						</div>
 
-			<p:outputLabel for="fechaPago" value="Fecha Pago" />
-			<p:datePicker id="fechaPago" showIcon="false" style="width:auto"
-				value="#{polizaBean.fechaPago}" />
-				
-				
-				
-				
-				<h:outputLabel for="tipocliente" value="Tipo Cliente" />
-				<p:selectOneMenu id="tipocliente" 
-					label="Tipo Cliente"
-					value="#{polizasBean.tipoCliente}">
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
 
-					<f:selectItem itemLabel="Seleccione un tipo de Cliente"
-						itemValue="" noSelectionOption="true" />
-					<f:selectItems value="#{polizasBean.listTipoCliente}"
-						itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente}" />
-				</p:selectOneMenu>
+								<p:outputLabel for="numeroSoat" value="Número de SOAT" />
+								<br></br>
+								<p:inputNumber id="numeroSoat" value="#{polizasBean.numeroSoat}" />
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
 
+								<p:outputLabel for="numeroPlaca" value="Número de PLACA" />
+								<br></br>
+								<p:inputText id="numeroPlaca" value="#{polizasBean.numeroPlaca}" />
 
-		</p:panelGrid>
-		
-		
-		
-		
-		<p:commandButton value="Guardar" id="ajax"
-			action="#{polizasBean.enviar}" style="margin-right:20px;"
-			styleClass="ui-priority-primary" />
+							</div>
+						</div>
+					</div>
 
 
-		<h:panelGroup>
-			<p:dataTable var="polizas" value="#{polizasBean.listPolizas}"
-				paginator="true" rows="10"
-				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-				rowsPerPageTemplate="5,10,15" selectionMode="single"
-				rowKey="#{polizas.numPoliza}"
-				selection="#{polizasBean.selectPolizas}" id="carTable" lazy="true">
+					<div class="row centered-form">
+
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+								<p:outputLabel for="fechaExpPoliza" value="Fecha Poliza" />
+								<br></br>
+								<p:datePicker id="fechaExpPoliza" showIcon="false"
+									style="width:auto" value="#{polizaBean.fechaExpPoliza}" />
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
 
 
-				<p:ajax event="rowSelect" listener="#{polizasBean.onRowSelect}"
-					update=":form:carDetail" oncomplete="PF('carDialog').show()" />
-				<p:column headerText="Id" sortBy="#{polizas.numPoliza}"
-					filterBy="#{polizas.numPoliza}">
-					<h:outputText value="#{polizas.numPoliza}" />
-				</p:column>
-				<p:column headerText="Year" sortBy="#{polizas.fecExpedicion}"
-					filterBy="#{polizas.fecExpedicion}">
-					<h:outputText value="#{polizas.fecExpedicion}" />
-				</p:column>
-				<p:column headerText="Brand" sortBy="#{polizas.fecIniVigencia}"
-					filterBy="#{polizas.fecIniVigencia}">
-					<h:outputText value="#{polizas.fecIniVigencia}" />
-				</p:column>
-				<p:column headerText="Color" sortBy="#{polizas.numSoat}"
-					filterBy="#{polizas.numSoat}">
-					<h:outputText value="#{polizas.numSoat}" />
-				</p:column>
-			</p:dataTable>
+								<p:outputLabel for="fechaIniVigencia"
+									value="Fecha Inicio Vigencia" />
+								<br></br>
+								<p:datePicker id="fechaIniVigencia" showIcon="false"
+									style="width:auto" value="#{polizaBean.fechaIniVigencia}" />
+							</div>
+						</div>
 
-			<p:dialog header="Car Detail" widgetVar="carDialog" modal="true"
-				showEffect="fade" hideEffect="fade" resizable="false">
-				<p:outputPanel id="carDetail" style="text-align:center;">
-					<p:panelGrid columns="2"
-						rendered="#{not empty dtLazyView.selectedCar}"
-						columnClasses="label,value">
-						<f:facet name="header">
-							<p:graphicImage
-								name="demo/images/car/#{dtLazyView.selectedCar.brand}-big.gif" />
-						</f:facet>
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
 
-						<h:outputText value="Id:" />
-						<h:outputText value="#{dtLazyView.selectedCar.id}" />
+								<p:outputLabel for="fechaFinVigencia" value="Fecha Fin Vigencia" />
+								<br></br>
+								<p:datePicker id="fechaFinVigencia" showIcon="false"
+									style="width:auto" value="#{polizaBean.fechaFinVigencia}" />
 
-						<h:outputText value="Year" />
-						<h:outputText value="#{dtLazyView.selectedCar.year}" />
+							</div>
+						</div>
+					</div>
 
-						<h:outputText value="Color:" />
-						<h:outputText value="#{dtLazyView.selectedCar.color}"
-							style="color:#{dtLazyView.selectedCar.color}" />
 
-						<h:outputText value="Price:" />
-						<h:outputText value="#{dtLazyView.selectedCar.price}">
-							<f:convertNumber type="currency" currencySymbol="$" />
-						</h:outputText>
-					</p:panelGrid>
-				</p:outputPanel>
-			</p:dialog>
+					<div class="row centered-form">
 
-		</h:panelGroup>
-	</h:form>
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+								<p:outputLabel for="fechaPago" value="Fecha Pago" />
+								<p:datePicker id="fechaPago" showIcon="false" style="width:auto"
+									value="#{polizaBean.fechaPago}" />
+							</div>
+						</div>
 
-</h:body>
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+								<h:outputLabel for="tipocliente" value="Tipo Cliente" />
+								<p:selectOneMenu id="tipocliente" label="Tipo Cliente"
+									value="#{polizasBean.tipoCliente}">
 
-</html>
+									<f:selectItem itemLabel="Seleccione un tipo de Cliente"
+										itemValue="" noSelectionOption="true" />
+									<f:selectItems value="#{polizasBean.listTipoCliente}"
+										itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente}" />
+								</p:selectOneMenu>
+							</div>
+						</div>
+
+					</div>
+
+
+
+
+
+
+
+				</p:panel>
+
+
+
+
+				<p:commandButton value="Guardar" id="ajax"
+					action="#{polizasBean.enviar}" style="margin-right:20px;"
+					styleClass="ui-priority-primary" />
+
+
+				<h:panelGroup>
+					<p:dataTable var="polizas" value="#{polizasBean.listPolizas}"
+						paginator="true" rows="10"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						rowsPerPageTemplate="5,10,15" selectionMode="single"
+						rowKey="#{polizas.numPoliza}"
+						selection="#{polizasBean.selectPolizas}" id="carTable" lazy="true">
+
+
+						<p:ajax event="rowSelect" listener="#{polizasBean.onRowSelect}"
+							update=":form:carDetail" oncomplete="PF('carDialog').show()" />
+						<p:column headerText="Id" sortBy="#{polizas.numPoliza}"
+							filterBy="#{polizas.numPoliza}">
+							<h:outputText value="#{polizas.numPoliza}" />
+						</p:column>
+						<p:column headerText="Year" sortBy="#{polizas.fecExpedicion}"
+							filterBy="#{polizas.fecExpedicion}">
+							<h:outputText value="#{polizas.fecExpedicion}" />
+						</p:column>
+						<p:column headerText="Brand" sortBy="#{polizas.fecIniVigencia}"
+							filterBy="#{polizas.fecIniVigencia}">
+							<h:outputText value="#{polizas.fecIniVigencia}" />
+						</p:column>
+						<p:column headerText="Color" sortBy="#{polizas.numSoat}"
+							filterBy="#{polizas.numSoat}">
+							<h:outputText value="#{polizas.numSoat}" />
+						</p:column>
+					</p:dataTable>
+
+					<p:dialog header="Car Detail" widgetVar="carDialog" modal="true"
+						showEffect="fade" hideEffect="fade" resizable="false">
+						<p:outputPanel id="carDetail" style="text-align:center;">
+							<p:panelGrid columns="2"
+								rendered="#{not empty dtLazyView.selectedCar}"
+								columnClasses="label,value">
+								<f:facet name="header">
+									<p:graphicImage
+										name="demo/images/car/#{dtLazyView.selectedCar.brand}-big.gif" />
+								</f:facet>
+
+								<h:outputText value="Id:" />
+								<h:outputText value="#{dtLazyView.selectedCar.id}" />
+
+								<h:outputText value="Year" />
+								<h:outputText value="#{dtLazyView.selectedCar.year}" />
+
+								<h:outputText value="Color:" />
+								<h:outputText value="#{dtLazyView.selectedCar.color}"
+									style="color:#{dtLazyView.selectedCar.color}" />
+
+								<h:outputText value="Price:" />
+								<h:outputText value="#{dtLazyView.selectedCar.price}">
+									<f:convertNumber type="currency" currencySymbol="$" />
+								</h:outputText>
+							</p:panelGrid>
+						</p:outputPanel>
+					</p:dialog>
+
+				</h:panelGroup>
+			</h:form>
+
+		</h:body>
+
+
+	</ui:define>
+</ui:composition>
