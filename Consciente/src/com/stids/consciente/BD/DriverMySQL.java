@@ -38,8 +38,8 @@ public class DriverMySQL {
 
 
 		} catch (SQLException e) {
-			System.out.println("Error en la conexion");
-			e.printStackTrace();
+			System.out.println("Error en la conexion"+e.getMessage());
+			
 		}
 	}
 
@@ -52,7 +52,7 @@ public class DriverMySQL {
 		try {
 			conexion.close();
 		} catch (SQLException e) {
-			System.out.println("Ha ocurrido un error"+e.getMessage());
+			System.out.println("Clase=>"+ this.getClass().getSimpleName() +"Ha ocurrido un error " +e.getMessage());
 		}
 	}
 
