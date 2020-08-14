@@ -1,11 +1,11 @@
 package com.stids.consciente.beans;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -17,7 +17,7 @@ import com.stids.consciente.services.LoginServices;
 import com.stids.consciente.utils.Utilidades;
 
 @Named("loginBean")
-@SessionScoped
+@ViewScoped
 public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 1555777803758086998L;
@@ -34,7 +34,7 @@ public class LoginBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-
+		salir();
 	}
 
 	public void login() {
@@ -67,6 +67,19 @@ public class LoginBean implements Serializable {
 
 	}
 
+	
+	public void salir() {
+		HttpSession session;
+		try {
+			session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+			session.invalidate();
+			
+		} catch (Exception e) {
+			System.out.println("Cerrando sesion " + e.getMessage());
+
+		}
+	}
+	
 	public String getHash(String txt, String hashType) {
 		try {
 			java.security.MessageDigest md = java.security.MessageDigest.getInstance(hashType);
