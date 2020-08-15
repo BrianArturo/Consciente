@@ -128,7 +128,7 @@
 								<p:outputLabel for="fechaIniVigencia"
 									value="Fecha Inicio Vigencia" />
 								<br></br>
-								<p:datePicker id="fechaIniVigencia" showIcon="false"
+								<p:datePicker id="fechaIniVigencia" showIcon="false" placeholder="Fecha Inicio Vigencia"
 									style="width:auto" value="#{polizaBean.fechaIniVigencia}" />
 							</div>
 						</div>
@@ -138,7 +138,7 @@
 
 								<p:outputLabel for="fechaFinVigencia" value="Fecha Fin Vigencia" />
 								<br></br>
-								<p:datePicker id="fechaFinVigencia" showIcon="false"
+								<p:datePicker id="fechaFinVigencia" showIcon="false" placeholder="Fecha de vigencia" 
 									style="width:auto" value="#{polizaBean.fechaFinVigencia}" />
 
 							</div>
@@ -155,36 +155,119 @@
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-12 col-md-4">
-							<div class="form-group"></div>
+							<div class="form-group">
+
+								<p:outputLabel for="valorpoliza" value="Valor Poliza" />
+								<br></br>
+								<p:inputText id="valorpoliza" value="#{polizasBean.valorPoliza}" />
+
+							</div>
+						</div>
+						
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+
+								<p:outputLabel for="valorprima" value="Valor Prima" />
+								<br></br>
+								<p:inputText id="valorprima" value="#{polizasBean.valorPrima}" />
+
+							</div>
 						</div>
 					</div>
+					
+					<!--  Ultimo -->
+					<div class="row centered-form">
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+
+								<p:outputLabel for="comision" value="% de Comision" />
+								<br></br>
+								<p:inputText id="comision" value="#{polizasBean.comision}" />
+
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+
+								<p:outputLabel for="participacion" value="% de participacion" />
+								<br></br>
+								<p:inputText id="participacion" value="#{polizasBean.porcentaje}" />
+
+							</div>
+						</div>
+						
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+
+								<p:outputLabel for="valorComision" value="Valor Comision" />
+								<br></br>
+								<p:inputText id="valorComision" value="#{polizasBean.valorComision}" />
+
+							</div>
+						</div>
+					</div>
+					
+					
 				</p:panel>
 
-				<p:panelGrid columns="2">
-					<h:outputLabel for="tipocliente" value="Tipo Cliente" />
-					<p:selectOneMenu id="tipocliente" label="Tipo Cliente"
-						value="#{polizasBean.tipoCliente}">
+				<p:panelGrid columns="4" layout="grid" 
+					styleClass="showcase-text-align-center centered-form">
 
-						<f:selectItem itemLabel="Seleccione un tipo de Cliente"
-							itemValue="" noSelectionOption="true" />
-						<f:selectItems value="#{polizasBean.listTipoCliente}"
-							itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente}" />
-					</p:selectOneMenu>
+					<p:panelGrid columns="2" >
+						<h:outputLabel for="tipocliente" value="Tipo Cliente" />
+						<p:selectOneMenu id="tipocliente" label="Tipo Cliente"
+							value="#{polizasBean.tipoCliente}">
 
-					<h:outputText value="Tomador:" />
-					<p:inputText id="tomador" value="#{polizasBean.cliente.tomador}" />
+							<f:selectItem itemLabel="Seleccione un tipo de Cliente"
+								itemValue="" noSelectionOption="true" />
+							<f:selectItems value="#{polizasBean.listTipoCliente}"
+								itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente}" />
+						</p:selectOneMenu>
 
-					<h:outputText value="No Identificaciòn" />
-					<p:inputText id="nit" value="#{polizasBean.cliente.identificacion}" />
+						<h:outputText value="Tomador:" />
+						<p:inputText id="tomador" value="#{polizasBean.cliente.tomador}" />
 
-					<h:outputText value="Direccion" />
-					<p:inputText id="direccion" value="#{polizasBean.cliente.direccion}" />
+						<h:outputText value="No Identificaciòn" />
+						<p:inputText id="nit"
+							value="#{polizasBean.cliente.identificacion}" />
 
-					<h:outputText value="Telefono" />
-					<p:inputText id="telefono" value="#{polizasBean.cliente.telefono}" />
+						<h:outputText value="Direccion" />
+						<p:inputText id="direccion"
+							value="#{polizasBean.cliente.direccion}" />
 
-					<h:outputText value="Correo" />
-					<p:inputText id="email" value="#{polizasBean.cliente.email}" />
+						<h:outputText value="Telefono" />
+						<p:inputText id="telefono" value="#{polizasBean.cliente.telefono}" />
+
+						<h:outputText value="Correo" />
+						<p:inputText id="email" value="#{polizasBean.cliente.email}" />
+					</p:panelGrid>
+					
+					<!-- asegurado -->
+					<p:panelGrid columns="2">
+
+						<f:facet name="header">
+							<h:outputText value="Informacion del Asegurado" />
+						</f:facet>
+
+						<h:outputText value="Nombre:" />
+						<p:inputText id="nombreasegurado"
+							value="#{polizasBean.asegurado.nombre}" />
+
+						<h:outputText value="No Identificaciòn" />
+						<p:inputText id="nitasegurado"
+							value="#{polizasBean.asegurado.identificacion}" />
+
+						<h:outputText value="Direccion" />
+						<p:inputText id="direccionasegurado"
+							value="#{polizasBean.asegurado.direccion}" />
+
+						<h:outputText value="Telefono" />
+						<p:inputText id="telefonoasegurado"
+							value="#{polizasBean.asegurado.telefono}" />
+
+
+					</p:panelGrid>
+
 				</p:panelGrid>
 
 

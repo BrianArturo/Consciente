@@ -23,6 +23,7 @@ import org.primefaces.event.SelectEvent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.stids.consciente.models.Asegurado;
 import com.stids.consciente.models.Cliente;
 import com.stids.consciente.models.Compania;
 import com.stids.consciente.models.Polizas;
@@ -67,7 +68,15 @@ public class PolizasBean implements Serializable {
 
 	private List<TipoCliente> listTipoCliente;
 	private TipoCliente tipoCliente;
+	
+	private Long valorPoliza;
+	private Long valorPrima;
+	private Integer comision;
+	private String porcentaje;
+	private Long valorComision;
+	
 	private Cliente cliente;
+	private Asegurado asegurado;
 	
 
 	private transient Gson gson;
@@ -322,8 +331,56 @@ public class PolizasBean implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
+	public Asegurado getAsegurado() {
+		return asegurado;
+	}
 
+	public void setAsegurado(Asegurado asegurado) {
+		this.asegurado = asegurado;
+	}
 
+	
+	public Long getValorPoliza() {
+		return valorPoliza;
+	}
+
+	public void setValorPoliza(Long valorPoliza) {
+		this.valorPoliza = valorPoliza;
+	}
+
+	public Long getValorPrima() {
+		return valorPrima;
+	}
+
+	public void setValorPrima(Long valorPrima) {
+		this.valorPrima = valorPrima;
+	}
+
+	public String getPorcentaje() {
+		return porcentaje;
+	}
+
+	public void setPorcentaje(String porcentaje) {
+		this.porcentaje = porcentaje;
+	}
+
+	public Long getValorComision() {
+		return valorComision;
+	}
+
+	public void setValorComision(Long valorComision) {
+		this.valorComision = valorComision;
+	}
+	
+
+	public Integer getComision() {
+		return comision;
+	}
+
+	public void setComision(Integer comision) {
+		this.comision = comision;
+	}
 
 	public void onRowSelect(SelectEvent event) {
 		FacesMessage msg = new FacesMessage("Car Selected", event.getObject().toString());
