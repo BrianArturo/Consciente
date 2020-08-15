@@ -3,14 +3,12 @@ package com.stids.consciente.models;
 public class Asegurado {
 
 	private String nombre;
-	private Integer valor;
-	
-	
-	
+	private String identificacion;
+	private String direccion;
+	private String telefono;
 
 	public Asegurado() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getNombre() {
@@ -21,12 +19,28 @@ public class Asegurado {
 		this.nombre = nombre;
 	}
 
-	public Integer getValor() {
-		return valor;
+	public String getIdentificacion() {
+		return identificacion;
 	}
 
-	public void setValor(Integer valor) {
-		this.valor = valor;
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 }
