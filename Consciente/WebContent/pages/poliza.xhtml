@@ -86,7 +86,7 @@
 								<p:outputLabel for="numeroPoliza" value="Número de Poliza" />
 								<br></br>
 								<p:inputText id="numeroPoliza"
-									value="#{polizasBean.numeroPoliza}" />
+									value="#{polizasBean.numeroPoliza}" style="width:100%" />
 							</div>
 						</div>
 
@@ -95,7 +95,8 @@
 
 								<p:outputLabel for="numeroSoat" value="Número de SOAT" />
 								<br></br>
-								<p:inputNumber id="numeroSoat" value="#{polizasBean.numeroSoat}" />
+								<p:inputText id="numeroSoat" value="#{polizasBean.numeroSoat}" style="width:100%" />
+								
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-12 col-md-4">
@@ -103,7 +104,7 @@
 
 								<p:outputLabel for="numeroPlaca" value="Número de PLACA" />
 								<br></br>
-								<p:inputText id="numeroPlaca" value="#{polizasBean.numeroPlaca}" />
+								<p:inputText id="numeroPlaca" value="#{polizasBean.numeroPlaca}" style="width:100%" />
 
 							</div>
 						</div>
@@ -117,19 +118,19 @@
 								<p:outputLabel for="fechaExpPoliza" value="Fecha Poliza" />
 								<br></br>
 								<p:datePicker id="fechaExpPoliza" showIcon="false"
-									style="width:auto" value="#{polizaBean.fechaExpPoliza}" />
+									 value="#{polizaBean.fechaExpPoliza}" />
 							</div>
 						</div>
 
 						<div class="col-xs-12 col-sm-12 col-md-4">
 							<div class="form-group">
-
-
+							
 								<p:outputLabel for="fechaIniVigencia"
 									value="Fecha Inicio Vigencia" />
 								<br></br>
 								<p:datePicker id="fechaIniVigencia" showIcon="false"
 									style="width:auto" value="#{polizaBean.fechaIniVigencia}" />
+									
 							</div>
 						</div>
 
@@ -139,7 +140,7 @@
 								<p:outputLabel for="fechaFinVigencia" value="Fecha Fin Vigencia" />
 								<br></br>
 								<p:datePicker id="fechaFinVigencia" showIcon="false"
-									style="width:auto" value="#{polizaBean.fechaFinVigencia}" />
+									style="width:auto;"  value="#{polizaBean.fechaFinVigencia}" />
 
 							</div>
 						</div>
