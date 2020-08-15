@@ -4,7 +4,7 @@ public class Cliente {
 
 	private TipoCliente tipoCliente;
 	private String tomador;
-	private Long identificacion;
+	private String identificacion;
 	private String direccion;
 	private String telefono;
 	private String email;
@@ -12,7 +12,6 @@ public class Cliente {
 
 	public Cliente() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public TipoCliente getTipoCliente() {
@@ -31,11 +30,11 @@ public class Cliente {
 		this.tomador = tomador;
 	}
 
-	public Long getIdentificacion() {
+	public String getIdentificacion() {
 		return identificacion;
 	}
 
-	public void setIdentificacion(Long identificacion) {
+	public void setIdentificacion(String identificacion) {
 		this.identificacion = identificacion;
 	}
 

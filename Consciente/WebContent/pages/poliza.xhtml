@@ -15,8 +15,7 @@
 			<h:form id="form" styleClass="container-fluid">
 				<p:growl id="msgs" showDetail="true"
 					skipDetailIfEqualsSummary="true" />
-				<p:panel header="Selecciona toda la información"
-					style="margin-bottom:10px;">
+				<p:panel header="Sistema de polizas" style="margin-bottom:10px;">
 					<div class="row centered-form">
 
 						<div class="col-xs-12 col-sm-12 col-md-4">
@@ -148,7 +147,6 @@
 
 
 					<div class="row centered-form">
-
 						<div class="col-xs-12 col-sm-12 col-md-4">
 							<div class="form-group">
 								<p:outputLabel for="fechaPago" value="Fecha Pago" />
@@ -156,30 +154,38 @@
 									value="#{polizaBean.fechaPago}" />
 							</div>
 						</div>
-
 						<div class="col-xs-12 col-sm-12 col-md-4">
-							<div class="form-group">
-								<h:outputLabel for="tipocliente" value="Tipo Cliente" />
-								<p:selectOneMenu id="tipocliente" label="Tipo Cliente"
-									value="#{polizasBean.tipoCliente}">
-
-									<f:selectItem itemLabel="Seleccione un tipo de Cliente"
-										itemValue="" noSelectionOption="true" />
-									<f:selectItems value="#{polizasBean.listTipoCliente}"
-										itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente}" />
-								</p:selectOneMenu>
-							</div>
+							<div class="form-group"></div>
 						</div>
-
 					</div>
-
-
-
-
-
-
-
 				</p:panel>
+
+				<p:panelGrid columns="2">
+					<h:outputLabel for="tipocliente" value="Tipo Cliente" />
+					<p:selectOneMenu id="tipocliente" label="Tipo Cliente"
+						value="#{polizasBean.tipoCliente}">
+
+						<f:selectItem itemLabel="Seleccione un tipo de Cliente"
+							itemValue="" noSelectionOption="true" />
+						<f:selectItems value="#{polizasBean.listTipoCliente}"
+							itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente}" />
+					</p:selectOneMenu>
+
+					<h:outputText value="Tomador:" />
+					<p:inputText id="tomador" value="#{polizasBean.cliente.tomador}" />
+
+					<h:outputText value="No Identificaciòn" />
+					<p:inputText id="nit" value="#{polizasBean.cliente.identificacion}" />
+
+					<h:outputText value="Direccion" />
+					<p:inputText id="direccion" value="#{polizasBean.cliente.direccion}" />
+
+					<h:outputText value="Telefono" />
+					<p:inputText id="telefono" value="#{polizasBean.cliente.telefono}" />
+
+					<h:outputText value="Correo" />
+					<p:inputText id="email" value="#{polizasBean.cliente.email}" />
+				</p:panelGrid>
 
 
 

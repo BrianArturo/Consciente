@@ -68,6 +68,7 @@ public class PolizasBean implements Serializable {
 	private List<TipoCliente> listTipoCliente;
 	private TipoCliente tipoCliente;
 	private Cliente cliente;
+	
 
 	private transient Gson gson;
 
@@ -321,6 +322,8 @@ public class PolizasBean implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+
 
 	public void onRowSelect(SelectEvent event) {
 		FacesMessage msg = new FacesMessage("Car Selected", event.getObject().toString());
