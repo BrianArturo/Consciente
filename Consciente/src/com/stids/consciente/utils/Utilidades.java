@@ -19,6 +19,7 @@ import javax.inject.Named;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.stids.consciente.models.User;
 
 @Named
 @SessionScoped
@@ -34,6 +35,7 @@ public class Utilidades implements Serializable {
     private static final int LONGITUD_TAG_AUTENTICACION = 128;
     private static byte[] key;
     String passPhrase="**St1dsS4s2020**";
+    private User usuario;
 
 	@PostConstruct
 	public void init() {
@@ -78,5 +80,32 @@ public class Utilidades implements Serializable {
 		byte[] dec = Base64.getDecoder().decode(str.getBytes("UTF-8"));
 		return new String(cipher.doFinal(dec), "UTF-8");
 	}
+	
+	
+	
+	public String getHash(String txt, String hashType) {
+		try {
+			java.security.MessageDigest md = java.security.MessageDigest.getInstance(hashType);
+			byte[] array = md.digest(txt.getBytes());
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < array.length; ++i) {
+				sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));
+			}
+			return sb.toString();
+		} catch (java.security.NoSuchAlgorithmException e) {
+			System.out.println("Ha ocurrido un error " + e.getMessage());
+		}
+		return null;
+	}
+
+	public User getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(User usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 
 }

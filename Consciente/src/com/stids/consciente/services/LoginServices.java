@@ -37,7 +37,7 @@ public class LoginServices {
 			pstBuscarCodigo.setString(2, password);
 			ResultSet rs = pstBuscarCodigo.executeQuery();
 			if (rs.next()) {
-				System.out.println(rs.getLong(1) + "  " + rs.getString(2));
+				//System.out.println(rs.getLong(1) + "  " + rs.getString(2));
 				usuario.setId(rs.getInt(1));
 				usuario.setNombre(rs.getString(2));
 				usuario.setIdentificacion(rs.getString(3));

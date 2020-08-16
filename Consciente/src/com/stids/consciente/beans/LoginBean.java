@@ -3,9 +3,8 @@ package com.stids.consciente.beans;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -17,7 +16,7 @@ import com.stids.consciente.services.LoginServices;
 import com.stids.consciente.utils.Utilidades;
 
 @Named("loginBean")
-@ViewScoped
+@SessionScoped
 public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 1555777803758086998L;
@@ -34,21 +33,25 @@ public class LoginBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		salir();
+		//clean();
 	}
 
 	public void login() {
+		
 		System.out.println("user " + user + " pass " + password);
 		
-		password = getHash(password, "SHA1");
+		password = utilidades.getHash(password, "SHA1");
 		usuario = loginService.getUser(user, password);
 		String dataEncrypt;
+		HttpSession session;
+		FacesContext context;
 		try {
 			if (usuario != null && usuario.getEstado().equals("Activo")) {
 
 				dataEncrypt=utilidades.enriptar(usuario);
-				FacesContext context = FacesContext.getCurrentInstance();
-				HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+				context = FacesContext.getCurrentInstance();
+				//Si el parametro es true, crea una nueva sesion
+				session = (HttpSession) context.getExternalContext().getSession(true);
 				session.setAttribute("usuario", dataEncrypt);
 				context.getExternalContext().redirect("pages/poliza.xhtml");
 				System.out.println("Redireccionando");
@@ -68,32 +71,11 @@ public class LoginBean implements Serializable {
 	}
 
 	
-	public void salir() {
-		HttpSession session;
-		try {
-			session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-			session.invalidate();
-			
-		} catch (Exception e) {
-			System.out.println("Cerrando sesion " + e.getMessage());
+	public void clean() {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+	}
 
-		}
-	}
-	
-	public String getHash(String txt, String hashType) {
-		try {
-			java.security.MessageDigest md = java.security.MessageDigest.getInstance(hashType);
-			byte[] array = md.digest(txt.getBytes());
-			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < array.length; ++i) {
-				sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));
-			}
-			return sb.toString();
-		} catch (java.security.NoSuchAlgorithmException e) {
-			System.out.println("Ha ocurrido un error " + e.getMessage());
-		}
-		return null;
-	}
 
 	public String getUser() {
 		return user;
