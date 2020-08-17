@@ -35,7 +35,7 @@ public class TipoPolizaServices {
 
 			while (rs.next()) {
 				TipoPoliza tipoPoliza = new TipoPoliza( rs.getInt(1),rs.getString(2));
-				System.out.println(rs.getInt(1) + "  " + rs.getString(2));
+				//System.out.println(rs.getInt(1) + "  " + rs.getString(2));
 				listTipoPoliza.add(tipoPoliza);
 			}
 

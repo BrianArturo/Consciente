@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
-<html
-    xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -115,25 +114,24 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						<a class="collapse-item" href="login.html">Login</a> <a
-							class="collapse-item" href="register.html">Register</a> <a
-							class="collapse-item" href="forgot-password.html">Forgot
-							Password</a>
+						<a class="collapse-item" href="poliza.xhtml">Crear Poliza</a>
+						 <a class="collapse-item" href="empresa.xhtml">Crear Empresas</a> 
+						 <a class="collapse-item" href="#.html">Otras</a>
 						<div class="collapse-divider"></div>
 						<h6 class="collapse-header">Other Pages:</h6>
-						<a class="collapse-item" href="404.html">404 Page</a> <a
-							class="collapse-item active" href="blank.html">Blank Page</a>
+						<a class="collapse-item" href="#.html">Usuarios</a> <a
+							class="collapse-item active" href="#.html">Blank Page</a>
 					</div>
 				</div></li>
 
 			<!-- Nav Item - Charts -->
-			<li class="nav-item"><a class="nav-link" href="charts.html">
-					<i class="fas fa-fw fa-chart-area"></i> <span>Charts</span>
+			<li class="nav-item"><a class="nav-link" href="#.html"> <i
+					class="fas fa-fw fa-chart-area"></i> <span>Graficos</span>
 			</a></li>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item"><a class="nav-link" href="tables.html">
-					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
+			<li class="nav-item"><a class="nav-link" href="#.html"> <i
+					class="fas fa-fw fa-table"></i> <span>Polizas</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -209,7 +207,7 @@
 							class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-								<span class="badge badge-danger badge-counter">3+</span>
+								<span class="badge badge-danger badge-counter">0+</span>
 						</a> <!-- Dropdown - Alerts -->
 							<div
 								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -257,7 +255,7 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i>
 								<!-- Counter - Messages --> <span
-								class="badge badge-danger badge-counter">7</span>
+								class="badge badge-danger badge-counter">0</span>
 						</a> <!-- Dropdown - Messages -->
 							<div
 								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -320,8 +318,9 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie
-									Luna</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small"><h:outputLabel
+										value="#{menuBean.usuario.nombre}" /></span> <img
+								class="img-profile rounded-circle"
 								src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
 						</a> <!-- Dropdown - User Information -->
 							<div
@@ -384,29 +383,32 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
+	<h:form id="options">
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Listo para
+							salir?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">Si seleccionas "Salir" entonces se
+						finalizara la sesion.</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">Cancel</button>
+						<p:commandLink action="#{menuBean.logout()}"
+							class="btn btn-primary" value="Salir" />
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</h:form>
 
 	<!-- Bootstrap core JavaScript-->
 	<!--   <script src="vendor/jquery/jquery.min.js"></script> -->
@@ -415,11 +417,11 @@
 	<!--   <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
 	<!-- Custom scripts for all pages-->
 	<!--   <script src="js/sb-admin-2.min.js"></script> -->
-    <!-- 	<h:outputScript library="js" name="jquery.min.js" /> -->
-    
-		<h:outputScript library="js" name="bootstrap.bundle.min.js" />
-		<h:outputScript library="js" name="jquery.easing.min.js" />
-		<h:outputScript library="js" name="sb-admin-2.min.js" />
+	<!-- 	<h:outputScript library="js" name="jquery.min.js" /> -->
+
+	<h:outputScript library="js" name="bootstrap.bundle.min.js" />
+	<h:outputScript library="js" name="jquery.easing.min.js" />
+	<h:outputScript library="js" name="sb-admin-2.min.js" />
 
 </body>
 

@@ -34,7 +34,7 @@ public class TipoClienteServices {
 
 			while (rs.next()) {
 				TipoCliente tipoCliente = new TipoCliente(rs.getLong(1),rs.getString(2));
-				System.out.println(rs.getLong(1) + "  " + rs.getString(2));
+				//System.out.println(rs.getLong(1) + "  " + rs.getString(2));
 				listTipoCliente.add(tipoCliente);
 			}
 

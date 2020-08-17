@@ -1,28 +1,19 @@
 package com.stids.consciente.beans;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.SelectEvent;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.stids.consciente.models.Asegurado;
 import com.stids.consciente.models.Cliente;
 import com.stids.consciente.models.Compania;
@@ -30,15 +21,13 @@ import com.stids.consciente.models.Polizas;
 import com.stids.consciente.models.Producto;
 import com.stids.consciente.models.TipoCliente;
 import com.stids.consciente.models.TipoPoliza;
-import com.stids.consciente.models.User;
 import com.stids.consciente.services.CompaniaServices;
 import com.stids.consciente.services.ProductoServices;
 import com.stids.consciente.services.TipoClienteServices;
 import com.stids.consciente.services.TipoPolizaServices;
-import com.stids.consciente.utils.Utilidades;
 
 @Named("polizasBean")
-@ViewScoped
+@RequestScoped
 public class PolizasBean implements Serializable {
 
 	/**
@@ -68,18 +57,17 @@ public class PolizasBean implements Serializable {
 
 	private List<TipoCliente> listTipoCliente;
 	private TipoCliente tipoCliente;
-	
+
 	private Long valorPoliza;
 	private Long valorPrima;
 	private Integer comision;
 	private String porcentaje;
 	private Long valorComision;
-	
+
 	private Cliente cliente;
 	private Asegurado asegurado;
-	
 
-	private transient Gson gson;
+
 
 	@Inject
 	TipoPolizaServices tipoPolizaService;
@@ -93,11 +81,8 @@ public class PolizasBean implements Serializable {
 	@Inject
 	TipoClienteServices tipoClienteService;
 
-	@Inject
-	Utilidades utilidades;
-
 	public PolizasBean() {
-	
+
 		listPolizas = new ArrayList<>();
 		listTipoPoliza = new ArrayList<>();
 		listEmpresas = new ArrayList<>();
@@ -108,48 +93,8 @@ public class PolizasBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-
-		gson = new GsonBuilder().create();
-		HttpSession session;
-		FacesContext context;
-		String dataEncrypt;
-		String data;
-		User usuario;
-
-		try {
-			context = FacesContext.getCurrentInstance();
-			session = (HttpSession) context.getExternalContext().getSession(true);
-			dataEncrypt = (String) session.getAttribute("usuario");
-			data = utilidades.decrypt(dataEncrypt);
-			usuario = gson.fromJson(data, User.class);
-
-			if (usuario != null && usuario.getEstado().equals("Activo")) {
-				System.out.println("Inicio exitoso continuar");
-				iniciar();
-			} else {
-				salir();
-			}
-
-		} catch (Exception e) {
-			System.out.println("Clase "+this.getClass().getSimpleName()+" Ha ocurrido un error " + e.getMessage());
-			salir();
-		}
-
+		iniciar();
 		
-		
-
-	}
-
-	public void salir() {
-		HttpSession session;
-		try {
-			session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-			session.invalidate();
-			FacesContext.getCurrentInstance().getExternalContext().redirect("../index.xhtml");
-		} catch (IOException e) {
-			System.out.println("Cerrando sesion " + e.getMessage());
-
-		}
 	}
 
 	private void iniciar() {
@@ -331,7 +276,7 @@ public class PolizasBean implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
+
 	public Asegurado getAsegurado() {
 		return asegurado;
 	}
@@ -340,7 +285,6 @@ public class PolizasBean implements Serializable {
 		this.asegurado = asegurado;
 	}
 
-	
 	public Long getValorPoliza() {
 		return valorPoliza;
 	}
@@ -372,7 +316,6 @@ public class PolizasBean implements Serializable {
 	public void setValorComision(Long valorComision) {
 		this.valorComision = valorComision;
 	}
-	
 
 	public Integer getComision() {
 		return comision;
