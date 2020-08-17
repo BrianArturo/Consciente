@@ -58,16 +58,14 @@ public class PolizasBean implements Serializable {
 	private List<TipoCliente> listTipoCliente;
 	private TipoCliente tipoCliente;
 
-	private Long valorPoliza;
-	private Long valorPrima;
+	private String valorPoliza;
+	private String valorPrima;
 	private Integer comision;
-	private String porcentaje;
-	private Long valorComision;
+	private Integer porcentaje;
+	private Double valorComision;
 
 	private Cliente cliente;
 	private Asegurado asegurado;
-
-
 
 	@Inject
 	TipoPolizaServices tipoPolizaService;
@@ -82,12 +80,12 @@ public class PolizasBean implements Serializable {
 	TipoClienteServices tipoClienteService;
 
 	public PolizasBean() {
-		fechaExpPoliza = new Date();
-		fechaIniVigencia = new Date();
-		fechaFinVigencia = new Date();
-		fechaPago =new Date();
-		cliente= new Cliente();
-		asegurado= new Asegurado();
+//		fechaExpPoliza = new Date();
+//		fechaIniVigencia = new Date();
+//		fechaFinVigencia = new Date();
+//		fechaPago =new Date();
+		cliente = new Cliente();
+		asegurado = new Asegurado();
 		listPolizas = new ArrayList<>();
 		listTipoPoliza = new ArrayList<>();
 		listEmpresas = new ArrayList<>();
@@ -99,7 +97,7 @@ public class PolizasBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		iniciar();
-		
+
 	}
 
 	private void iniciar() {
@@ -123,11 +121,21 @@ public class PolizasBean implements Serializable {
 	}
 
 	public void guardar() {
-		
+
 		System.out.println("Los datos son");
 	}
-	
-	
+
+	public void calcular() {
+		try {
+			valorComision =  Double.valueOf(valorPrima) * Double.valueOf(comision)/100 * Double.valueOf(porcentaje)/100;
+
+		} catch (Exception e) {
+			valorComision = null;
+			System.out.println("Error sumando");
+		}
+
+	}
+
 	public Polizas getSelectPolizas() {
 		return selectPolizas;
 	}
@@ -296,35 +304,35 @@ public class PolizasBean implements Serializable {
 		this.asegurado = asegurado;
 	}
 
-	public Long getValorPoliza() {
+	public String getValorPoliza() {
 		return valorPoliza;
 	}
 
-	public void setValorPoliza(Long valorPoliza) {
+	public void setValorPoliza(String valorPoliza) {
 		this.valorPoliza = valorPoliza;
 	}
 
-	public Long getValorPrima() {
+	public String getValorPrima() {
 		return valorPrima;
 	}
 
-	public void setValorPrima(Long valorPrima) {
+	public void setValorPrima(String valorPrima) {
 		this.valorPrima = valorPrima;
 	}
 
-	public String getPorcentaje() {
+	public Integer getPorcentaje() {
 		return porcentaje;
 	}
 
-	public void setPorcentaje(String porcentaje) {
+	public void setPorcentaje(Integer porcentaje) {
 		this.porcentaje = porcentaje;
 	}
 
-	public Long getValorComision() {
+	public Double getValorComision() {
 		return valorComision;
 	}
 
-	public void setValorComision(Long valorComision) {
+	public void setValorComision(Double valorComision) {
 		this.valorComision = valorComision;
 	}
 
