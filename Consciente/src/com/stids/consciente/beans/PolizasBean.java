@@ -82,7 +82,12 @@ public class PolizasBean implements Serializable {
 	TipoClienteServices tipoClienteService;
 
 	public PolizasBean() {
-
+		fechaExpPoliza = new Date();
+		fechaIniVigencia = new Date();
+		fechaFinVigencia = new Date();
+		fechaPago =new Date();
+		cliente= new Cliente();
+		asegurado= new Asegurado();
 		listPolizas = new ArrayList<>();
 		listTipoPoliza = new ArrayList<>();
 		listEmpresas = new ArrayList<>();
@@ -117,6 +122,12 @@ public class PolizasBean implements Serializable {
 
 	}
 
+	public void guardar() {
+		
+		System.out.println("Los datos son");
+	}
+	
+	
 	public Polizas getSelectPolizas() {
 		return selectPolizas;
 	}
