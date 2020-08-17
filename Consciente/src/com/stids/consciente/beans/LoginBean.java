@@ -37,9 +37,6 @@ public class LoginBean implements Serializable {
 	}
 
 	public void login() {
-		
-		System.out.println("user " + user + " pass " + password);
-		
 		password = utilidades.getHash(password, "SHA1");
 		usuario = loginService.getUser(user, password);
 		String dataEncrypt;

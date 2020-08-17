@@ -1,6 +1,5 @@
 package com.stids.consciente.beans;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
@@ -24,7 +23,7 @@ public class MenuBean implements Serializable {
 	private User usuario;
 
 	public MenuBean() {
-		
+
 	}
 
 	@PostConstruct
@@ -34,25 +33,14 @@ public class MenuBean implements Serializable {
 
 	}
 
-	public void salir() {
+	public void logout() {
 
 		try {
 			System.out.println("intentando cerrar sesion");
-			FacesContext.getCurrentInstance().getExternalContext().redirect("../index.xhtml");
-		} catch (IOException e) {
-			System.out.println("Cerrando sesion " + e.getMessage());
-
-		}
-
-	}
-	
-public void logout() {
-		
-		try {
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
 			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-			
-			
+			FacesContext.getCurrentInstance().getExternalContext().redirect("../index.xhtml");
+
 		} catch (Exception e) {
 			System.out.println("Cerrando sesion " + e.getMessage());
 
