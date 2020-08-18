@@ -1,0 +1,182 @@
+<ui:composition template="/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui">
+
+
+	<ui:define name="titleOption">Sistema de polizas</ui:define>
+	<ui:define name="content">
+
+		<h:body>
+
+			<h:form id="form" styleClass="container-fluid">
+				<p:growl id="msgs" showDetail="true"
+					skipDetailIfEqualsSummary="true" />
+				<p:panel header="Registrar Empresa" style="margin-bottom:10px;">
+
+
+					<div class="row centered-form">
+
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+
+								<p:outputLabel for="numeroPoliza" value="Nit" /> 
+								 <br></br>
+								<p:inputText id="numeroPoliza" placeholder="Ingresa el Nit"
+									value="#{polizasBean.numeroPoliza}">
+									<p:keyFilter regEx="/[a-z0-9_]/i" />
+								</p:inputText>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+
+								<p:outputLabel for="numeroSoat" value="Nombre de Empresa" />
+								<br></br>
+								<p:inputNumber id="numeroSoat" value="#{polizasBean.numeroSoat}"
+									placeholder="Nombre de Empresa">
+									<p:keyFilter regEx="/[\d]/" />
+								</p:inputNumber>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+
+								<p:outputLabel for="numeroPlaca" value="Dirección" /> 
+								<br></br>
+								<p:inputText id="numeroPlaca" value="#{polizasBean.numeroPlaca}"
+									placeholder="Ingrese su Dir" maxlength="7">
+									<p:keyFilter regEx="/[a-z0-9_]/i" />
+								</p:inputText>
+
+							</div>
+						</div>
+					</div>
+
+
+					<!--  Ultimo -->
+					<div class="row centered-form">
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+
+								<p:outputLabel for="comision" value="Teléfono" /> 
+								<br></br> 
+								<p:inputText id="comision" value="#{polizasBean.comision}"
+									placeholder="Ingrese su tel.." onblur="{calcular();}">
+									<p:ajax update="@this" />
+<!-- 									<p:keyFilter regEx="/[\d]/" /> -->
+								</p:inputText>
+
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+
+								<p:outputLabel for="participacion" value="E-mail" /> 
+								<br></br> 
+								<p:inputText id="participacion"
+									value="#{polizasBean.porcentaje}"
+									placeholder="Ingrese su correo" onblur="{calcular();}">
+									<p:ajax update="@this" />
+<!-- 									<p:keyFilter regEx="/[\d]/" /> -->
+								</p:inputText>
+
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="form-group">
+								<p:remoteCommand name="calcular"
+									action="#{polizasBean.calcular}" update="valorComision"
+									 />
+								<p:outputLabel for="valorComision" value="Ciudad" /> 
+								<br></br> 
+								<p:inputText id="valorComision" readonly="true"
+									value="#{polizasBean.valorComision}"
+									placeholder="Ingrese la ciudad" />
+
+							</div>
+						</div>
+					</div>
+
+
+				</p:panel>
+
+
+
+
+				<p:commandButton value="Guardar" id="ajax"
+					action="#{polizasBean.guardar}" style="margin-right:20px;"
+					styleClass="ui-priority-primary" />
+
+
+				<h:panelGroup>
+					<p:dataTable var="polizas" value="#{polizasBean.listPolizas}"
+						paginator="true" rows="10"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						rowsPerPageTemplate="5,10,15" selectionMode="single"
+						rowKey="#{polizas.numPoliza}"
+						selection="#{polizasBean.selectPolizas}" id="carTable" lazy="true">
+
+
+						<p:ajax event="rowSelect" listener="#{polizasBean.onRowSelect}"
+							update=":form:carDetail" oncomplete="PF('carDialog').show()" />
+						<p:column headerText="Id" sortBy="#{polizas.numPoliza}"
+							filterBy="#{polizas.numPoliza}">
+							<h:outputText value="#{polizas.numPoliza}" />
+						</p:column>
+						<p:column headerText="Year" sortBy="#{polizas.fecExpedicion}"
+							filterBy="#{polizas.fecExpedicion}">
+							<h:outputText value="#{polizas.fecExpedicion}" />
+						</p:column>
+						<p:column headerText="Brand" sortBy="#{polizas.fecIniVigencia}"
+							filterBy="#{polizas.fecIniVigencia}">
+							<h:outputText value="#{polizas.fecIniVigencia}" />
+						</p:column>
+						<p:column headerText="Color" sortBy="#{polizas.numSoat}"
+							filterBy="#{polizas.numSoat}">
+							<h:outputText value="#{polizas.numSoat}" />
+						</p:column>
+					</p:dataTable>
+
+					<p:dialog header="Car Detail" widgetVar="carDialog" modal="true"
+						showEffect="fade" hideEffect="fade" resizable="false">
+						<p:outputPanel id="carDetail" style="text-align:center;">
+							<p:panelGrid columns="2"
+								rendered="#{not empty dtLazyView.selectedCar}"
+								columnClasses="label,value">
+								<f:facet name="header">
+									<p:graphicImage
+										name="demo/images/car/#{dtLazyView.selectedCar.brand}-big.gif" />
+								</f:facet>
+
+								<h:outputText value="Id:" />
+								<h:outputText value="#{dtLazyView.selectedCar.id}" />
+
+								<h:outputText value="Year" />
+								<h:outputText value="#{dtLazyView.selectedCar.year}" />
+
+								<h:outputText value="Color:" />
+								<h:outputText value="#{dtLazyView.selectedCar.color}"
+									style="color:#{dtLazyView.selectedCar.color}" />
+
+								<h:outputText value="Price:" />
+								<h:outputText value="#{dtLazyView.selectedCar.price}">
+									<f:convertNumber type="currency" currencySymbol="$" />
+								</h:outputText>
+							</p:panelGrid>
+						</p:outputPanel>
+					</p:dialog>
+
+				</h:panelGroup>
+			</h:form>
+
+		</h:body>
+
+
+	</ui:define>
+</ui:composition>
