@@ -270,44 +270,56 @@
 					<p:panelGrid columns="2">
 						<h:outputLabel for="tipocliente" value="Tipo Cliente" />
 						<p:selectOneMenu id="tipocliente" label="Tipo Cliente"
-							value="#{polizasBean.tipoCliente}">
+							value="#{polizasBean.tipoCliente}" required="true" requiredMessage="Debe seleccionar un tipo">
 
 							<f:selectItem itemLabel="Seleccione un tipo de Cliente"
 								itemValue="" noSelectionOption="true" />
 							<f:selectItems value="#{polizasBean.listTipoCliente}"
 								itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente}" />
+						<p:message for="tipocliente" styleClass="" display="text" />
 						</p:selectOneMenu>
+						
 
 						<h:outputText value="Tomador:" />
 						<p:inputText id="tomador" value="#{polizasBean.cliente.tomador}"
-							placeholder="Tomador" maxlength="50">
+							placeholder="Tomador" maxlength="50" required="true" requiredMessage="Debe ingresar un tomador">
 							<p:keyFilter regEx="/[a-z_]/i" />
+						<p:message for="tomador" styleClass="" display="text" />
 						</p:inputText>
+						
 
 						<h:outputText value="No Identificaciòn" />
 						<p:inputText id="nit"
 							value="#{polizasBean.cliente.identificacion}"
-							placeholder="Nit/Cc" maxlength="15">
+							placeholder="Nit/Cc" maxlength="15" required="true" requiredMessage="Debe ingresar un tomador">
 							<p:keyFilter regEx="/[a-z0-9_]/i" />
+						<p:message for="nit" styleClass="" display="text" />
 						</p:inputText>
+						
 
 						<h:outputText value="Direccion" />
-						<p:inputText id="direccion"
+						<p:inputText id="direccion" required="true" requiredMessage="Debe ingresar una direccion"
 							value="#{polizasBean.cliente.direccion}" placeholder="Direccion">
 							<p:keyFilter regEx="/[a-z0-9_]/i" />
+						<p:message for="direccion" styleClass="" display="text" />
 						</p:inputText>
+						
 
 						<h:outputText value="Telefono" />
-						<p:inputText id="telefono" value="#{polizasBean.cliente.telefono}"
+						<p:inputText id="telefono" value="#{polizasBean.cliente.telefono}" required="true" requiredMessage="Debe ingresar un telefono"
 							placeholder="Telefono" maxlength="15">
 							<p:keyFilter regEx="/[\d]/" />
+						<p:message for="telefono" styleClass="" display="text" />
 						</p:inputText>
+						
 
 						<h:outputText value="Correo" />
 						<p:inputText id="email" value="#{polizasBean.cliente.email}"
-							placeholder="Correo">
+							placeholder="Correo" required="true" requiredMessage="">
 							<p:keyFilter regEx="/[a-z0-9_\.\-@]/i" />
+						<p:message for="email" styleClass="" display="text" />
 						</p:inputText>
+						
 
 
 
@@ -321,32 +333,40 @@
 						</f:facet>
 
 						<h:outputText value="Nombre:" />
-						<p:inputText id="nombreasegurado"
+						<p:inputText id="nombreasegurado" required="true" requiredMessage="Debe ingresar un nombre"
 							value="#{polizasBean.asegurado.nombre}" placeholder="Nombre:"
 							maxlength="50">
 							<p:keyFilter regEx="/[a-z_]/i" />
+						<p:message for="nombreasegurado" styleClass="" display="text" />
 						</p:inputText>
+						
 
 						<h:outputText value="No Identificaciòn" />
-						<p:inputText id="nitasegurado"
+						<p:inputText id="nitasegurado" required="true" requiredMessage="Debe ingresar una identificacion"
 							value="#{polizasBean.asegurado.identificacion}"
 							placeholder="Nit/Cc" maxlength="15">
 							<p:keyFilter regEx="/[a-z0-9_]/i" />
+						<p:message for="nitasegurado" styleClass="" display="text" />
 						</p:inputText>
+						
 
 						<h:outputText value="Direccion" />
-						<p:inputText id="direccionasegurado"
+						<p:inputText id="direccionasegurado" required="true" requiredMessage="Debe ingresar una direccion"
 							value="#{polizasBean.asegurado.direccion}"
 							placeholder="Direccion">
 							<p:keyFilter regEx="/[a-z0-9_]/i" />
+						<p:message for="direccionasegurado" styleClass="" display="text" />
 						</p:inputText>
+						
 
 						<h:outputText value="Telefono" />
-						<p:inputText id="telefonoasegurado"
+						<p:inputText id="telefonoasegurado" required="true" requiredMessage="Debe ingresar un telefono"
 							value="#{polizasBean.asegurado.telefono}" placeholder="Telefono"
 							maxlength="15">
 							<p:keyFilter regEx="/[\d]/" />
+						<p:message for="telefonoasegurado" styleClass="" display="text" />
 						</p:inputText>
+						
 
 					</p:panelGrid>
 
