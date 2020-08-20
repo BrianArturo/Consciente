@@ -23,10 +23,10 @@
 						<div class="col-xs-12 col-sm-12 col-md-4">
 							<div class="form-group">
 
-								<p:outputLabel for="numeroPoliza" value="Nit" /> 
+								<p:outputLabel for="Nit" value="Nit" /> 
 								 <br></br>
-								<p:inputText id="numeroPoliza" placeholder="Ingresa el Nit"
-									value="#{polizasBean.numeroPoliza}">
+								<p:inputText id="Nit" placeholder="Ingresa el Nit"
+									value="#{empresasBean.nit}">
 									<p:keyFilter regEx="/[a-z0-9_]/i" />
 								</p:inputText>
 							</div>
@@ -35,9 +35,9 @@
 						<div class="col-xs-12 col-sm-12 col-md-4">
 							<div class="form-group">
 
-								<p:outputLabel for="numeroSoat" value="Nombre de Empresa" />
+								<p:outputLabel for="nombre" value="Nombre de Empresa" />
 								<br></br>
-								<p:inputNumber id="numeroSoat" value="#{polizasBean.numeroSoat}"
+								<p:inputNumber id="nombre" value="#{empresasBean.nombre}"
 									placeholder="Nombre de Empresa">
 									<p:keyFilter regEx="/[\d]/" />
 								</p:inputNumber>
@@ -46,9 +46,9 @@
 						<div class="col-xs-12 col-sm-12 col-md-4">
 							<div class="form-group">
 
-								<p:outputLabel for="numeroPlaca" value="Dirección" /> 
+								<p:outputLabel for="direccion" value="Dirección" /> 
 								<br></br>
-								<p:inputText id="numeroPlaca" value="#{polizasBean.numeroPlaca}"
+								<p:inputText id="direccion" value="#{empresasBean.direccion}"
 									placeholder="Ingrese su Dir" maxlength="7">
 									<p:keyFilter regEx="/[a-z0-9_]/i" />
 								</p:inputText>
@@ -63,9 +63,9 @@
 						<div class="col-xs-12 col-sm-12 col-md-4">
 							<div class="form-group">
 
-								<p:outputLabel for="comision" value="Teléfono" /> 
+								<p:outputLabel for="telefono" value="Teléfono" /> 
 								<br></br> 
-								<p:inputText id="comision" value="#{polizasBean.comision}"
+								<p:inputText id="telefono" value="#{empresasBean.telefono}"
 									placeholder="Ingrese su tel.." onblur="{calcular();}">
 									<p:ajax update="@this" />
 <!-- 									<p:keyFilter regEx="/[\d]/" /> -->
@@ -76,10 +76,10 @@
 						<div class="col-xs-12 col-sm-12 col-md-4">
 							<div class="form-group">
 
-								<p:outputLabel for="participacion" value="E-mail" /> 
+								<p:outputLabel for="email" value="E-mail" /> 
 								<br></br> 
 								<p:inputText id="participacion"
-									value="#{polizasBean.porcentaje}"
+									value="#{empresasBean.porcentaje}"
 									placeholder="Ingrese su correo" onblur="{calcular();}">
 									<p:ajax update="@this" />
 <!-- 									<p:keyFilter regEx="/[\d]/" /> -->
@@ -91,12 +91,12 @@
 						<div class="col-xs-12 col-sm-12 col-md-4">
 							<div class="form-group">
 								<p:remoteCommand name="calcular"
-									action="#{polizasBean.calcular}" update="valorComision"
+									action="#{empresasBean.calcular}" update="valorComision"
 									 />
 								<p:outputLabel for="valorComision" value="Ciudad" /> 
 								<br></br> 
 								<p:inputText id="valorComision" readonly="true"
-									value="#{polizasBean.valorComision}"
+									value="#{empresasBean.valorComision}"
 									placeholder="Ingrese la ciudad" />
 
 							</div>
