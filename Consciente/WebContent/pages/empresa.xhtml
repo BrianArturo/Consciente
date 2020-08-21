@@ -110,20 +110,20 @@
 
 
 				<p:commandButton value="Guardar" id="ajax"
-					action="#{polizasBean.guardar}" style="margin-right:20px;"
+					action="#{empresasBean.guardar}" style="margin-right:20px;"
 					styleClass="ui-priority-primary" />
 
 
 				<h:panelGroup>
-					<p:dataTable var="polizas" value="#{polizasBean.listPolizas}"
+					<p:dataTable var="polizas" value="#{empresasBean.listEmpresas}"
 						paginator="true" rows="10"
 						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 						rowsPerPageTemplate="5,10,15" selectionMode="single"
 						rowKey="#{polizas.numPoliza}"
-						selection="#{polizasBean.selectPolizas}" id="carTable" lazy="true">
+						selection="#{empresasBean.selectPolizas}" id="carTable" lazy="true">
 
 
-						<p:ajax event="rowSelect" listener="#{polizasBean.onRowSelect}"
+						<p:ajax event="rowSelect" listener="#{empresasBean.onRowSelect}"
 							update=":form:carDetail" oncomplete="PF('carDialog').show()" />
 						<p:column headerText="Id" sortBy="#{polizas.numPoliza}"
 							filterBy="#{polizas.numPoliza}">
