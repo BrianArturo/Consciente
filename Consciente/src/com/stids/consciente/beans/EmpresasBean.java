@@ -19,6 +19,10 @@ import com.stids.consciente.models.TipoPoliza;
 @RequestScoped
 public class EmpresasBean implements Serializable {
    
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//private static final long;
 	private Compania compania;
 	private String nit;
@@ -29,11 +33,10 @@ public class EmpresasBean implements Serializable {
 	private String ciudad;
 	
 	
-	public EmpresasBean() {
 
-
+	public void guardar() {
+		System.out.println("Los datos son");
 	}
-	
 
 	public Compania getCompania() {
 		return compania;
@@ -68,8 +71,6 @@ public class EmpresasBean implements Serializable {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-
-	
 
 	public Integer getTelefono() {
 		return telefono;

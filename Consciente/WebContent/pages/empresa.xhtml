@@ -78,8 +78,8 @@
 
 								<p:outputLabel for="email" value="E-mail" /> 
 								<br></br> 
-								<p:inputText id="participacion"
-									value="#{empresasBean.porcentaje}"
+								<p:inputText id="email"
+									value="#{empresasBean.email}"
 									placeholder="Ingrese su correo" onblur="{calcular();}">
 									<p:ajax update="@this" />
 <!-- 									<p:keyFilter regEx="/[\d]/" /> -->
@@ -90,13 +90,11 @@
 
 						<div class="col-xs-12 col-sm-12 col-md-4">
 							<div class="form-group">
-								<p:remoteCommand name="calcular"
-									action="#{empresasBean.calcular}" update="valorComision"
-									 />
-								<p:outputLabel for="valorComision" value="Ciudad" /> 
+								
+								<p:outputLabel for="ciudad" value="Ciudad" /> 
 								<br></br> 
-								<p:inputText id="valorComision" readonly="true"
-									value="#{empresasBean.valorComision}"
+								<p:inputText id="ciudad" 
+									value="#{empresasBean.ciudad}"
 									placeholder="Ingrese la ciudad" />
 
 							</div>
@@ -115,31 +113,31 @@
 
 
 				<h:panelGroup>
-					<p:dataTable var="polizas" value="#{empresasBean.listEmpresas}"
+					<p:dataTable var="empresas" value="#{empresasBean.compania}"
 						paginator="true" rows="10"
 						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 						rowsPerPageTemplate="5,10,15" selectionMode="single"
-						rowKey="#{polizas.numPoliza}"
-						selection="#{empresasBean.selectPolizas}" id="carTable" lazy="true">
+						rowKey="#{empresasBean.compania}"
+						selection="#{empresasBean.selectEmpresas}" id="carTable" lazy="true">
 
 
 						<p:ajax event="rowSelect" listener="#{empresasBean.onRowSelect}"
 							update=":form:carDetail" oncomplete="PF('carDialog').show()" />
-						<p:column headerText="Id" sortBy="#{polizas.numPoliza}"
-							filterBy="#{polizas.numPoliza}">
-							<h:outputText value="#{polizas.numPoliza}" />
+						<p:column headerText="Id" sortBy="#{empresasBean.nit}"
+							filterBy="#{empresas.nit}">
+							<h:outputText value="#{empresasBean.nit}" />
 						</p:column>
-						<p:column headerText="Year" sortBy="#{polizas.fecExpedicion}"
-							filterBy="#{polizas.fecExpedicion}">
-							<h:outputText value="#{polizas.fecExpedicion}" />
+						<p:column headerText="Year" sortBy="#{empresas.telefono}"
+							filterBy="#{empresas.telefono}">
+							<h:outputText value="#{empresas.telefono}" />
 						</p:column>
-						<p:column headerText="Brand" sortBy="#{polizas.fecIniVigencia}"
-							filterBy="#{polizas.fecIniVigencia}">
-							<h:outputText value="#{polizas.fecIniVigencia}" />
+						<p:column headerText="Brand" sortBy="#{empresass.email}"
+							filterBy="#{empresas.email}">
+							<h:outputText value="#{empresas.email}" />
 						</p:column>
-						<p:column headerText="Color" sortBy="#{polizas.numSoat}"
-							filterBy="#{polizas.numSoat}">
-							<h:outputText value="#{polizas.numSoat}" />
+						<p:column headerText="Color" sortBy="#{empresa.ciudad}"
+							filterBy="#{empresas.ciudad}">
+							<h:outputText value="#{empresas.ciudad}" />
 						</p:column>
 					</p:dataTable>
 
