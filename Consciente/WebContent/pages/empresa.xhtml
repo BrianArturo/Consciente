@@ -127,15 +127,23 @@
 							filterBy="#{empresas.nit}">
 							<h:outputText value="#{empresasBean.nit}" />
 						</p:column>
-						<p:column headerText="Year" sortBy="#{empresas.telefono}"
+						<p:column headerText="Nombre_Empresa" sortBy="#{empresas.nombre}"
+							filterBy="#{empresas.nombre}">
+							<h:outputText value="#{empresas.nombre}" />
+						</p:column>
+						<p:column headerText="Dirección" sortBy="#{empresass.direccion}"
+							filterBy="#{empresas.direccion}">
+							<h:outputText value="#{empresas.direccion}" />
+						</p:column>
+						<p:column headerText="Teléfono" sortBy="#{empresa.telefono}"
 							filterBy="#{empresas.telefono}">
 							<h:outputText value="#{empresas.telefono}" />
 						</p:column>
-						<p:column headerText="Brand" sortBy="#{empresass.email}"
+						<p:column headerText="E-mail" sortBy="#{empresa.email}"
 							filterBy="#{empresas.email}">
-							<h:outputText value="#{empresas.email}" />
+							<h:outputText value="email" />
 						</p:column>
-						<p:column headerText="Color" sortBy="#{empresa.ciudad}"
+						<p:column headerText="Ciudad" sortBy="#{empresa.ciudad}"
 							filterBy="#{empresas.ciudad}">
 							<h:outputText value="#{empresas.ciudad}" />
 						</p:column>
